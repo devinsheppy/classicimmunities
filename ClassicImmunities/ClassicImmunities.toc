@@ -1,0 +1,9 @@
+## Interface: 11404
+## Title: Classic Immunities
+## Notes: Displays known creature immunities in tooltips
+## Version: 1.0.0
+
+## SavedVariables: CI_temp_database_settings
+
+ClassicImmunitiesDatabase.lua
+ClassicImmunities.lua
