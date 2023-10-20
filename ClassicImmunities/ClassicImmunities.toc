@@ -3,7 +3,8 @@
 ## Notes: Displays known creature immunities in tooltips
 ## Version: 1.0.0
 
-## SavedVariables: CI_temp_database_settings
+## SavedVariables: CI_global_settings
 
 ClassicImmunitiesDatabase.lua
+ClassicImmunitiesOptions.lua
 ClassicImmunities.lua

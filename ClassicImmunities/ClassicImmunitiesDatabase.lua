@@ -1,4 +1,6 @@
 -- 3100 -- elder mottled boar for testing
+-- 1512 -- duskbat for testing
+-- 19 -- for polymorph
 
 -- ["icon_id"] -- used to display immunity icon in tooltip
 -- ["display_name"] -- used to display immunity text in tooltip
@@ -11,6 +13,54 @@
 
 -- sorting priority is as follows
 -- class_white_list && > npc_id_white_list > npc_id_black_list > creature_type_white_list > creature_type_black_list
+
+function CIGetSpellTexture(spell_id)
+	local texture = GetSpellTexture(spell_id);	
+	if (texture ~= nil) then
+	  local icon = "|T" .. texture .. ":0|t";
+	  return icon
+	end
+	return 'XXX'
+end
+
+function CITableFind(t, v)
+	for i, v1 in ipairs(t) do
+		if t[i] == v then return true end
+	end
+	return nil
+end
+
+function CITableGetImmunityByDisplayName(t, display_name)
+	for i, x in ipairs(t) do
+		if t[i].display_name == display_name then return t[i] end
+	end
+	return nil
+end
+
+function tprint (tbl, indent)
+  if not indent then indent = 0 end
+  local toprint = string.rep(" ", indent) .. "{\r\n"
+  indent = indent + 2 
+  for k, v in pairs(tbl) do
+    toprint = toprint .. string.rep(" ", indent)
+    if (type(k) == "number") then
+      toprint = toprint .. "[" .. k .. "] = "
+    elseif (type(k) == "string") then
+      toprint = toprint  .. k ..  "= "   
+    end
+    if (type(v) == "number") then
+      toprint = toprint .. v .. ",\r\n"
+    elseif (type(v) == "string") then
+      toprint = toprint .. "\"" .. v .. "\",\r\n"
+    elseif (type(v) == "table") then
+      toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
+    else
+      toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+    end
+  end
+  toprint = toprint .. string.rep(" ", indent-2) .. "}"
+  return toprint
+end
 
 _G["ClassicImmunities"] ={
 {["icon_id"]=133,
@@ -75,12 +125,75 @@ _G["ClassicImmunities"] ={
 ["npc_id_black_list"]={}
 },
 
-{["icon_id"]=1776,
-["display_name"]="Gouge",
-["class_white_list"]={"Rogue"},
+{["icon_id"]=355,
+["display_name"]="Taunt",
+["class_white_list"]={"Warrior", "Druid"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=1604,
+["display_name"]="Slow",
+["class_white_list"]={},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=853,
+["display_name"]="Stun",
+["class_white_list"]={},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={2757, 2759, 10202, 7846},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=5782,
+["display_name"]="Fear",
+["class_white_list"]={"Warlock", "Warrior", "Priest"},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={"Undead", "Mechanical"},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=710,
+["display_name"]="Banish",
+["class_white_list"]={"Warlock"},
+["creature_type_white_list"]={"Elemental"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=1098,
+["display_name"]="Subjugate Demon",
+["class_white_list"]={"Warlock"},
+["creature_type_white_list"]={"Demon"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=16511,
+["display_name"]="Bleed",
+["class_white_list"]={},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={"Mechanical", "Elemental"},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=25605,
+["display_name"]="Poison",
+["class_white_list"]={},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={"Mechanical", "Elemental"},
+["npc_id_white_list"]={2757, 2759},
 ["npc_id_black_list"]={}
 },
 
@@ -88,6 +201,15 @@ _G["ClassicImmunities"] ={
 ["display_name"]="Pickpocket",
 ["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={"Humanoid", "Undead"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=1776,
+["display_name"]="Gouge",
+["class_white_list"]={"Rogue"},
+["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
 ["npc_id_black_list"]={}
@@ -111,12 +233,12 @@ _G["ClassicImmunities"] ={
 ["npc_id_black_list"]={}
 },
 
-{["icon_id"]=853,
-["display_name"]="Stun",
-["class_white_list"]={},
+{["icon_id"]=1766,
+["display_name"]="Kick",
+["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2757, 2759, 10202, 7846},
+["npc_id_white_list"]={2447, 7358},
 ["npc_id_black_list"]={}
 },
 
@@ -132,15 +254,6 @@ _G["ClassicImmunities"] ={
 {["icon_id"]=2139,
 ["display_name"]="Counterspell",
 ["class_white_list"]={"Mage"},
-["creature_type_white_list"]={},
-["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7358},
-["npc_id_black_list"]={}
-},
-
-{["icon_id"]=1766,
-["display_name"]="Kick",
-["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={2447, 7358},
@@ -174,12 +287,12 @@ _G["ClassicImmunities"] ={
 ["npc_id_black_list"]={}
 },
 
-{["icon_id"]=5782,
-["display_name"]="Fear",
-["class_white_list"]={"Warlock", "Warrior", "Priest"},
-["creature_type_white_list"]={},
-["creature_type_black_list"]={"Undead", "Mechanical"},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943},
+{["icon_id"]=2878,
+["display_name"]="Turn Undead",
+["class_white_list"]={"Paladin"},
+["creature_type_white_list"]={"Undead"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
 ["npc_id_black_list"]={}
 },
 
@@ -187,33 +300,6 @@ _G["ClassicImmunities"] ={
 ["display_name"]="Polymorph",
 ["class_white_list"]={"Mage"},
 ["creature_type_white_list"]={"Humanoid", "Beast", "Critter"},
-["creature_type_black_list"]={},
-["npc_id_white_list"]={},
-["npc_id_black_list"]={}
-},
-
-{["icon_id"]=1604,
-["display_name"]="Slowed",
-["class_white_list"]={},
-["creature_type_white_list"]={},
-["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846},
-["npc_id_black_list"]={}
-},
-
-{["icon_id"]=16511,
-["display_name"]="Bleed",
-["class_white_list"]={},
-["creature_type_white_list"]={},
-["creature_type_black_list"]={"Mechanical", "Elemental"},
-["npc_id_white_list"]={},
-["npc_id_black_list"]={}
-},
-
-{["icon_id"]=355,
-["display_name"]="Taunt",
-["class_white_list"]={"Warrior", "Druid"},
-["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
 ["npc_id_black_list"]={}
@@ -234,15 +320,6 @@ _G["ClassicImmunities"] ={
 ["creature_type_white_list"]={"Beast", "Dragonkin"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
-["npc_id_black_list"]={}
-},
-
-{["icon_id"]=25605,
-["display_name"]="Poison",
-["class_white_list"]={},
-["creature_type_white_list"]={},
-["creature_type_black_list"]={"Mechanical", "Elemental"},
-["npc_id_white_list"]={2757, 2759},
 ["npc_id_black_list"]={}
 }
 }
