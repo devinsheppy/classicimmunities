@@ -158,7 +158,7 @@ _G["ClassicImmunities"] ={
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Undead", "Mechanical"},
 ["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943},
-["npc_id_black_list"]={}
+["npc_id_black_list"]={6669}
 },
 
 {["icon_id"]=710,
@@ -273,6 +273,24 @@ _G["ClassicImmunities"] ={
 ["display_name"]="Shackle Undead",
 ["class_white_list"]={"Priest"},
 ["creature_type_white_list"]={"Undead"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=605,
+["display_name"]="Mind Control",
+["class_white_list"]={"Priest"},
+["creature_type_white_list"]={"Humanoid"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=453,
+["display_name"]="Mind Soothe",
+["class_white_list"]={"Priest"},
+["creature_type_white_list"]={"Humanoid"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
 ["npc_id_black_list"]={}
