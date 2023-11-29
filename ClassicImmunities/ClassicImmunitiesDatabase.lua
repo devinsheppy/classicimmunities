@@ -71,7 +71,7 @@ _G["ClassicImmunities"] ={
 ["npc_id_white_list"]={
 4676, 6073, 7135, 7136, 89, 8608, 14668, 8616, 2745, 14461, 9376, 5850, 8910, 14460, 2760, 4038, 4037, 7738, 9178, 7266, 575,
 8909, 8911, 11668, 12099, 11666, 11667, 12265, 6521, 3417, 9026, 9816, 8281, 6520, 12143, 2447, 7044, 7045, 7046, 2757, 2759, 2726,
-12899, 7846, 9878, 9879},
+12899, 7846, 9878, 9879, 2091, 9156, 9017, 9016, 9938},
 ["npc_id_black_list"]={}
 },
 
@@ -139,7 +139,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019},
 ["npc_id_black_list"]={}
 },
 
@@ -148,7 +148,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2757, 2759, 10202, 7846},
+["npc_id_white_list"]={2757, 2759, 10202, 7846, 9019},
 ["npc_id_black_list"]={}
 },
 
@@ -157,7 +157,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={"Warlock", "Warrior", "Priest"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Undead", "Mechanical"},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019},
 ["npc_id_black_list"]={6669}
 },
 
@@ -211,7 +211,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={9019},
 ["npc_id_black_list"]={}
 },
 
@@ -220,7 +220,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={"Humanoid"},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={9019},
 ["npc_id_black_list"]={}
 },
 
@@ -229,7 +229,16 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={"Rogue"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={9019},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=1725,
+["display_name"]="Distract",
+["class_white_list"]={"Rogue"},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={5854},
 ["npc_id_black_list"]={}
 },
 
@@ -319,7 +328,7 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={"Mage"},
 ["creature_type_white_list"]={"Humanoid", "Beast", "Critter"},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={9019, 8929},
 ["npc_id_black_list"]={}
 },
 
