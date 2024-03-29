@@ -71,7 +71,7 @@ _G["ClassicImmunities"] ={
 ["npc_id_white_list"]={
 4676, 6073, 7135, 7136, 89, 8608, 14668, 8616, 2745, 14461, 9376, 5850, 8910, 14460, 2760, 4038, 4037, 7738, 9178, 7266, 575,
 8909, 8911, 11668, 12099, 11666, 11667, 12265, 6521, 3417, 9026, 9816, 8281, 6520, 12143, 2447, 7044, 7045, 7046, 2757, 2759, 2726,
-12899, 7846, 9878, 9879, 2091, 9156, 9017, 9016, 9938},
+12899, 7846, 9878, 9879, 2091, 9156, 9017, 9016, 9938, 5852},
 ["npc_id_black_list"]={}
 },
 
@@ -139,7 +139,16 @@ _G["ClassicImmunities"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=122,
+["display_name"]="Root",
+["class_white_list"]={},
+["creature_type_white_list"]={},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397},
 ["npc_id_black_list"]={}
 },
 
@@ -345,6 +354,15 @@ _G["ClassicImmunities"] ={
 ["display_name"]="Hibernate",
 ["class_white_list"]={"Druid"},
 ["creature_type_white_list"]={"Beast", "Dragonkin"},
+["creature_type_black_list"]={},
+["npc_id_white_list"]={},
+["npc_id_black_list"]={}
+},
+
+{["icon_id"]=2908,
+["display_name"]="Soothe Animal",
+["class_white_list"]={"Druid"},
+["creature_type_white_list"]={"Beast"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
 ["npc_id_black_list"]={}
