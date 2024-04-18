@@ -1,4 +1,5 @@
-local CI_DB = _G["ClassicImmunities"]
+local CI_DB = _G["ClassicImmunitiesDB"]
+local CI_L = _G["ClassicImmunitiesLocalization"]
 
 local CI_hook_installed = false
 local CI_PLAYER_CLASS = "None"
@@ -49,11 +50,11 @@ local function CILoadGlobalSettings(db)
 	end
 end
 
-local function CISetTooltipImmunities(immunityIcons, npcID)
-  	if immunityIcons then
+local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
+  	if immunityIcons and immuneToAnything then
 		local headline = 'Immunities'
 		if IsAltKeyDown() then
-			headline = headline .. ' : ' .. npcID
+			headline = headline .. ' : NPC ID (' .. npcID ..')'
 		end
 		GameTooltip:AddLine(headline)
 		if not IsControlKeyDown() then
@@ -67,6 +68,12 @@ local function CISetTooltipImmunities(immunityIcons, npcID)
 				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
 			end
 		end	
+	else		
+		if IsAltKeyDown() then
+			local headline = 'Immunities'
+			headline = headline .. ' : NPC ID (' .. npcID ..')'
+			GameTooltip:AddLine(headline)
+		end		
 	end
 end
 
@@ -95,6 +102,7 @@ local function on_tooltip_set_unit()
   local immunityIcons = { }  
   local isImmuneToAnything = false
   local c_creatureType = UnitCreatureType(tt_unit)
+  local c_creatureTypeLocalizedFound, c_localizedCreatureType = CIGetLocalizedCreatureType(c_creatureType, CI_L)
 	
 	for i, v in ipairs(CI_DB) do
 		local globalSetting = CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name)
@@ -102,8 +110,13 @@ local function on_tooltip_set_unit()
 		if globalSetting.FILTER_TYPE == "CLASS" or globalSetting.FILTER_TYPE == "FORCE_ON" then
 			local classInWhiteList = table.getn(v.class_white_list) == 0 or CITableFind(v.class_white_list, CI_PLAYER_CLASS)
 			
-			local creatureTypeInWhiteList = table.getn(v.creature_type_white_list) == 0 or CITableFind(v.creature_type_white_list, c_creatureType)
-			local creatureTypeInBlackList = table.getn(v.creature_type_black_list) > 0 and CITableFind(v.creature_type_black_list, c_creatureType)
+			local creatureTypeInWhiteList = false
+			local creatureTypeInBlackList = false
+			
+			if c_creatureTypeLocalizedFound then
+				creatureTypeInWhiteList = table.getn(v.creature_type_white_list) == 0 or CITableFind(v.creature_type_white_list, c_localizedCreatureType)
+				creatureTypeInBlackList = table.getn(v.creature_type_black_list) > 0 and CITableFind(v.creature_type_black_list, c_localizedCreatureType)
+			end
 			
 			local npcIDInWhiteList = CITableFind(v.npc_id_white_list, npc_id)
 			local npcIDInBlackList = CITableFind(v.npc_id_black_list, npc_id)
@@ -113,6 +126,7 @@ local function on_tooltip_set_unit()
 				print("immunity: " .. tostring(v.display_name))
 				print("npc_id: " .. tostring(npc_id))
 				print("classInWhiteList: " .. tostring(classInWhiteList))
+				print("c_creatureTypeLocalizedFound: " .. tostring(c_creatureTypeLocalizedFound))
 				print("creatureTypeInWhiteList: " .. tostring(creatureTypeInWhiteList))
 				print("creatureTypeInBlackList: " .. tostring(creatureTypeInBlackList))
 				print("npcIDInWhiteList: " .. tostring(npcIDInWhiteList))
@@ -146,10 +160,8 @@ local function on_tooltip_set_unit()
 			end
 		end
 	end		
-  
-  if isImmuneToAnything then	
-	CISetTooltipImmunities(immunityIcons, npc_id)
-  end    
+  	
+	CISetTooltipImmunities(isImmuneToAnything, immunityIcons, npc_id) 
 end
 
 local function on_event(_frame, e, ...)
@@ -157,8 +169,8 @@ local function on_event(_frame, e, ...)
     if not CI_hook_installed then
       GameTooltip:HookScript("OnTooltipSetUnit", on_tooltip_set_unit)
       CI_hook_installed = true
-	  local playerClass, englishClass = UnitClass("player");
-	  CI_PLAYER_CLASS = playerClass
+	  local localizedClass, englishClass, classIndex = UnitClass("player");
+	  CI_PLAYER_CLASS = englishClass
 	  CILoadGlobalSettings(CI_DB)
 	  CICreateOptions(CI_DB, CI_global_settings)
     end

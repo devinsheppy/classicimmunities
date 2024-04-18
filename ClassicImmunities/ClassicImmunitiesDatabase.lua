@@ -37,7 +37,7 @@ function CITableGetImmunityByDisplayName(t, display_name)
 	return nil
 end
 
-function tprint (tbl, indent)
+function tprint(tbl, indent)
   if not indent then indent = 0 end
   local toprint = string.rep(" ", indent) .. "{\r\n"
   indent = indent + 2 
@@ -62,7 +62,7 @@ function tprint (tbl, indent)
   return toprint
 end
 
-_G["ClassicImmunities"] ={
+_G["ClassicImmunitiesDB"] ={
 {["icon_id"]=133,
 ["display_name"]="Fire",
 ["class_white_list"]={},
@@ -82,7 +82,7 @@ _G["ClassicImmunities"] ={
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={
 9453, 6047, 15211, 12876, 3917, 8519, 8521, 10757, 10756, 2761, 10642, 14350, 6220, 691, 13256, 13696, 14457, 5461, 5462, 14269,
-12759, 14458, 10664, 10202, 1796, 7429, 7428, 10198, 7358},
+12759, 14458, 10664, 10202, 1796, 7429, 7428, 10198, 7358, 6922},
 ["npc_id_black_list"]={}
 },
 
@@ -127,7 +127,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=355,
 ["display_name"]="Taunt",
-["class_white_list"]={"Warrior", "Druid"},
+["class_white_list"]={"WARRIOR", "DRUID"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -163,7 +163,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=5782,
 ["display_name"]="Fear",
-["class_white_list"]={"Warlock", "Warrior", "Priest"},
+["class_white_list"]={"WARLOCK", "WARRIOR", "PRIEST"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Undead", "Mechanical"},
 ["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019},
@@ -172,7 +172,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=710,
 ["display_name"]="Banish",
-["class_white_list"]={"Warlock"},
+["class_white_list"]={"WARLOCK"},
 ["creature_type_white_list"]={"Elemental"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -181,7 +181,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1098,
 ["display_name"]="Subjugate Demon",
-["class_white_list"]={"Warlock"},
+["class_white_list"]={"WARLOCK"},
 ["creature_type_white_list"]={"Demon"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -208,7 +208,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=921,
 ["display_name"]="Pickpocket",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={"Humanoid", "Undead"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -217,7 +217,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1776,
 ["display_name"]="Gouge",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={9019},
@@ -226,7 +226,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=6770,
 ["display_name"]="Sap",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={"Humanoid"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={9019},
@@ -235,7 +235,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=2094,
 ["display_name"]="Blind",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={9019},
@@ -244,7 +244,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1725,
 ["display_name"]="Distract",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={5854},
@@ -253,7 +253,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1766,
 ["display_name"]="Kick",
-["class_white_list"]={"Rogue"},
+["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={2447, 7358},
@@ -262,7 +262,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=6552,
 ["display_name"]="Pummel",
-["class_white_list"]={"Warrior"},
+["class_white_list"]={"WARRIOR"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={2447, 7358},
@@ -271,7 +271,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=2139,
 ["display_name"]="Counterspell",
-["class_white_list"]={"Mage"},
+["class_white_list"]={"MAGE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={2447, 7358},
@@ -280,7 +280,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=15487,
 ["display_name"]="Silence",
-["class_white_list"]={"Priest"},
+["class_white_list"]={"PRIEST"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={2447, 7358},
@@ -289,7 +289,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1425,
 ["display_name"]="Shackle Undead",
-["class_white_list"]={"Priest"},
+["class_white_list"]={"PRIEST"},
 ["creature_type_white_list"]={"Undead"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -298,7 +298,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=605,
 ["display_name"]="Mind Control",
-["class_white_list"]={"Priest"},
+["class_white_list"]={"PRIEST"},
 ["creature_type_white_list"]={"Humanoid"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -307,7 +307,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=453,
 ["display_name"]="Mind Soothe",
-["class_white_list"]={"Priest"},
+["class_white_list"]={"PRIEST"},
 ["creature_type_white_list"]={"Humanoid"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -316,7 +316,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=879,
 ["display_name"]="Exorcism",
-["class_white_list"]={"Paladin"},
+["class_white_list"]={"PALADIN"},
 ["creature_type_white_list"]={"Undead", "Demon"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -325,7 +325,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=2878,
 ["display_name"]="Turn Undead",
-["class_white_list"]={"Paladin"},
+["class_white_list"]={"PALADIN"},
 ["creature_type_white_list"]={"Undead"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -334,7 +334,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=118,
 ["display_name"]="Polymorph",
-["class_white_list"]={"Mage"},
+["class_white_list"]={"MAGE"},
 ["creature_type_white_list"]={"Humanoid", "Beast", "Critter"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={9019, 8929},
@@ -343,7 +343,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=1513,
 ["display_name"]="Scare Beast",
-["class_white_list"]={"Hunter"},
+["class_white_list"]={"HUNTER"},
 ["creature_type_white_list"]={"Beast"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -352,7 +352,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=2637,
 ["display_name"]="Hibernate",
-["class_white_list"]={"Druid"},
+["class_white_list"]={"DRUID"},
 ["creature_type_white_list"]={"Beast", "Dragonkin"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
@@ -361,7 +361,7 @@ _G["ClassicImmunities"] ={
 
 {["icon_id"]=2908,
 ["display_name"]="Soothe Animal",
-["class_white_list"]={"Druid"},
+["class_white_list"]={"DRUID"},
 ["creature_type_white_list"]={"Beast"},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={},
