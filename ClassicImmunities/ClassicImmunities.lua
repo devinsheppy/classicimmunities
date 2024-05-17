@@ -103,66 +103,87 @@ local function on_tooltip_set_unit()
   local isImmuneToAnything = false
   local c_creatureType = UnitCreatureType(tt_unit)
   local c_creatureTypeLocalizedFound, c_localizedCreatureType = CIGetLocalizedCreatureType(c_creatureType, CI_L)
-	
-	for i, v in ipairs(CI_DB) do
-		local globalSetting = CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name)
-		
-		if globalSetting.FILTER_TYPE == "CLASS" or globalSetting.FILTER_TYPE == "FORCE_ON" then
-			local classInWhiteList = table.getn(v.class_white_list) == 0 or CITableFind(v.class_white_list, CI_PLAYER_CLASS)
-			
-			local creatureTypeInWhiteList = false
-			local creatureTypeInBlackList = false
-			
-			if c_creatureTypeLocalizedFound then
-				creatureTypeInWhiteList = table.getn(v.creature_type_white_list) == 0 or CITableFind(v.creature_type_white_list, c_localizedCreatureType)
-				creatureTypeInBlackList = table.getn(v.creature_type_black_list) > 0 and CITableFind(v.creature_type_black_list, c_localizedCreatureType)
+	if CI_global_settings.SHOW_DETAILED_IMMUNITIES then
+		if CI_database[npc_id] ~= nil then
+			for k,v in pairs(CI_database[npc_id]) do
+				if v == true then
+					local display_name, _, _, _, _, _, _, _ = GetSpellInfo(k)
+					local spell_texture = CIGetSpellTexture(k)
+					table.insert(immunityIcons, { spell_texture, display_name })
+					isImmuneToAnything = true
+				end
 			end
+		end
+	else
+		for i, v in ipairs(CI_DB) do
+			local globalSetting = CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name)
 			
-			local npcIDInWhiteList = CITableFind(v.npc_id_white_list, npc_id)
-			local npcIDInBlackList = CITableFind(v.npc_id_black_list, npc_id)
-			
-			if CI_LOGGING then
-				print("------------------")
-				print("immunity: " .. tostring(v.display_name))
-				print("npc_id: " .. tostring(npc_id))
-				print("classInWhiteList: " .. tostring(classInWhiteList))
-				print("c_creatureTypeLocalizedFound: " .. tostring(c_creatureTypeLocalizedFound))
-				print("creatureTypeInWhiteList: " .. tostring(creatureTypeInWhiteList))
-				print("creatureTypeInBlackList: " .. tostring(creatureTypeInBlackList))
-				print("npcIDInWhiteList: " .. tostring(npcIDInWhiteList))
-				print("npcIDInBlackList: " .. tostring(npcIDInBlackList))
-				print("------------------")
-			end
-			
-			if CI_DEBUGGING and (npc_id == 3100 or npc_id == 1512) then
-				local spell_texture = CIGetSpellTexture(v.icon_id)
-				table.insert(immunityIcons, { spell_texture, v.display_name })
-			end
-		
-			if CI_global_settings.SHOW_ALL_CLASS_IMMUNITIES or classInWhiteList then
-				if npcIDInWhiteList then
+			if globalSetting.FILTER_TYPE == "CLASS" or globalSetting.FILTER_TYPE == "FORCE_ON" then
+				local classInWhiteList = table.getn(v.class_white_list) == 0 or CITableFind(v.class_white_list, CI_PLAYER_CLASS)
+				
+				local creatureTypeInWhiteList = false
+				local creatureTypeInBlackList = false
+				
+				if c_creatureTypeLocalizedFound then
+					creatureTypeInWhiteList = table.getn(v.creature_type_white_list) == 0 or CITableFind(v.creature_type_white_list, c_localizedCreatureType)
+					creatureTypeInBlackList = table.getn(v.creature_type_black_list) > 0 and CITableFind(v.creature_type_black_list, c_localizedCreatureType)
+				end
+				
+				local npcIDInWhiteList = CITableFind(v.npc_id_white_list, npc_id)
+				local npcIDInBlackList = CITableFind(v.npc_id_black_list, npc_id)
+				
+				if CI_LOGGING then
+					print("------------------")
+					print("immunity: " .. tostring(v.display_name))
+					print("npc_id: " .. tostring(npc_id))
+					print("classInWhiteList: " .. tostring(classInWhiteList))
+					print("c_creatureTypeLocalizedFound: " .. tostring(c_creatureTypeLocalizedFound))
+					print("creatureTypeInWhiteList: " .. tostring(creatureTypeInWhiteList))
+					print("creatureTypeInBlackList: " .. tostring(creatureTypeInBlackList))
+					print("npcIDInWhiteList: " .. tostring(npcIDInWhiteList))
+					print("npcIDInBlackList: " .. tostring(npcIDInBlackList))
+					print("------------------")
+				end
+				
+				if CI_DEBUGGING and (npc_id == 3100 or npc_id == 1512) then
 					local spell_texture = CIGetSpellTexture(v.icon_id)
 					table.insert(immunityIcons, { spell_texture, v.display_name })
-					isImmuneToAnything = true
-				else
-					if creatureTypeInBlackList and npcIDInBlackList == nil then
+				end
+			
+				if CI_global_settings.SHOW_ALL_CLASS_IMMUNITIES or classInWhiteList then
+					if npcIDInWhiteList then
 						local spell_texture = CIGetSpellTexture(v.icon_id)
 						table.insert(immunityIcons, { spell_texture, v.display_name })
 						isImmuneToAnything = true
 					else
-						if creatureTypeInWhiteList == nil then
+						if creatureTypeInBlackList and npcIDInBlackList == nil then
 							local spell_texture = CIGetSpellTexture(v.icon_id)
 							table.insert(immunityIcons, { spell_texture, v.display_name })
 							isImmuneToAnything = true
+						else
+							if creatureTypeInWhiteList == nil then
+								local spell_texture = CIGetSpellTexture(v.icon_id)
+								table.insert(immunityIcons, { spell_texture, v.display_name })
+								isImmuneToAnything = true
+							end
 						end
 					end
 				end
 			end
 		end
-	end		
-  	
+	end
 	CISetTooltipImmunities(isImmuneToAnything, immunityIcons, npc_id) 
 end
+
+local function default(self, event, addOnName)
+	if addOnName == "ClassicImmunities" then
+		CI_database = CI_database or {}
+	end
+end
+
+local f = CreateFrame("Frame")
+f:RegisterEvent("ADDON_LOADED")
+f:SetScript("OnEvent", default)
 
 local function on_event(_frame, e, ...)
   if e == "PLAYER_ENTERING_WORLD" then
@@ -180,6 +201,46 @@ local function on_event(_frame, e, ...)
     end
   end
 end
+
+local event_first_part ={"SPELL","SPELL_PERIODIC"}
+local event_second_part={"_DAMAGE","_AURA_APPLIED","_AURA_APPLIED_DOSE","_AURA_REFRESH","_LEECH","_DRAIN"}
+local non_immune_events ={}
+for k1,v1 in pairs(event_second_part) do
+	for k2,v2 in pairs(event_first_part) do
+		non_immune_events[v2 .. v1] = true
+	end
+end
+
+local function RecordImmunities(self, event)
+	local _,subevent,_,sourceGUID,_,_,_,destGUID,destName,_,_,spellId,_,spellSchool = CombatLogGetCurrentEventInfo()
+	if destName ~= "nil" and destGUID ~= "0000000000000000" then
+		local dest_unitType, _, _, _, _, destID, _ = strsplit("-", destGUID)
+		local destID = tonumber(destID)
+		if dest_unitType ~= "Pet" and dest_unitType ~= "Player" then
+			if non_immune_events[subevent] then
+				if CI_database[destID] == nil then
+					CI_database[destID] = {}
+				end
+				CI_database[destID][spellId] = false
+			elseif subevent == "SPELL_MISSED" or subevent == "SPELL_PERIODIC_MISSED" then
+				local missType,_ ,_,_ = select(15, CombatLogGetCurrentEventInfo())
+				if missType == "IMMUNE" then
+					if CI_database[destID] == nil then
+						CI_database[destID] = {}
+					end
+					-- check for false positive
+					if CI_database[destID][spellId] == nil then
+						CI_database[destID][spellId] = true
+					end
+				end
+			end
+		end
+	end
+end
+
+local f = CreateFrame("Frame", "ClassicImmunityRecordImmunities")
+f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+f:SetScript("OnEvent", RecordImmunities)
 
 local frame = CreateFrame("Frame", "ClassicImmunityEvents")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")

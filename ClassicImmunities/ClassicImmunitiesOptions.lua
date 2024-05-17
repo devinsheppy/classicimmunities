@@ -18,15 +18,27 @@ function CICreateOptions(db, globalSettings)
 	local showAllClassLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameTooltipText")
 	showAllClassLabel:SetPoint("TOPLEFT", 0, -20)
 	showAllClassLabel:SetText("Show All Class Immunities")
-	
+
 	local checkBoxShowAllClass = CreateFrame("CheckButton", "CheckButtonShowAllClass", CIOptionsFrame, "UICheckButtonTemplate")
-	checkBoxShowAllClass:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 3, -10)		
-	checkBoxShowAllClass:SetChecked(globalSettings.SHOW_ALL_CLASS_IMMUNITIES)		
+	checkBoxShowAllClass:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 3, -10)
+	checkBoxShowAllClass:SetChecked(globalSettings.SHOW_ALL_CLASS_IMMUNITIES)
 	checkBoxShowAllClass:SetScript("OnClick", function(frame)
 		local tick = frame:GetChecked()
 		globalSettings.SHOW_ALL_CLASS_IMMUNITIES = tick
 		end)
-	
+
+	local showDetailedLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameTooltipText")
+	showDetailedLabel:SetPoint("TOPLEFT", 0, -40)
+	showDetailedLabel:SetText("Show Detailed Immunities")
+
+	local checkBoxShowDetailed = CreateFrame("CheckButton", "CheckButtonShowDetailed", CIOptionsFrame, "UICheckButtonTemplate")
+	checkBoxShowDetailed:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 3, -35)
+	checkBoxShowDetailed:SetChecked(globalSettings.SHOW_DETAILED_IMMUNITIES)
+	checkBoxShowDetailed:SetScript("OnClick", function(frame)
+		local tick = frame:GetChecked()
+		globalSettings.SHOW_DETAILED_IMMUNITIES = tick
+		end)
+
 	-- immunity filters --
 	local scrollChildCount = 0
 	local scrollChildVerticalSpacing = 25
@@ -96,7 +108,7 @@ function CICreateOptions(db, globalSettings)
 				checkBoxForceOff:SetChecked(false)
 			end
 			end)
-		
+
 		checkBoxForceOn:SetPoint("TOPLEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 2), -scrollChildHeight)		
 		checkBoxForceOn:SetChecked(globalSetting.FILTER_TYPE == "FORCE_ON")		
 		checkBoxForceOn:SetScript("OnClick", function(frame)
