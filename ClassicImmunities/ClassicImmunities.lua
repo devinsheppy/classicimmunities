@@ -205,6 +205,7 @@ end
 local event_first_part ={"SPELL","SPELL_PERIODIC"}
 local event_second_part={"_DAMAGE","_AURA_APPLIED","_AURA_APPLIED_DOSE","_AURA_REFRESH","_LEECH","_DRAIN"}
 local non_immune_events ={}
+non_immune_events["DAMAGE_SHIELD"] = true
 for k1,v1 in pairs(event_second_part) do
 	for k2,v2 in pairs(event_first_part) do
 		non_immune_events[v2 .. v1] = true
@@ -222,7 +223,7 @@ local function RecordImmunities(self, event)
 					CI_database[destID] = {}
 				end
 				CI_database[destID][spellId] = false
-			elseif subevent == "SPELL_MISSED" or subevent == "SPELL_PERIODIC_MISSED" then
+			elseif subevent == "SPELL_MISSED" or subevent == "SPELL_PERIODIC_MISSED" or subevent == "DAMAGE_SHIELD_MISSED" then
 				local missType,_ ,_,_ = select(15, CombatLogGetCurrentEventInfo())
 				if missType == "IMMUNE" then
 					if CI_database[destID] == nil then
