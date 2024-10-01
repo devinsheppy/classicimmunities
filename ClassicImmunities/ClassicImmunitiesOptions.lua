@@ -2,9 +2,12 @@ function CICreateOptions(db, globalSettings)
 	local CIOptionsFrame = CreateFrame("Frame")
 	CIOptionsFrame.name = "Classic Immunities"
 	
-	InterfaceOptions_AddCategory(CIOptionsFrame);
+	local ci_category = Settings.RegisterCanvasLayoutCategory(CIOptionsFrame, CIOptionsFrame.name);
+	ci_category.ID = CIOptionsFrame.name
+	CIOptionsFrame.category = ci_category
+	Settings.RegisterAddOnCategory(ci_category);
 	
-	local checkBoxHorizontalOffset = 125
+	local checkBoxHorizontalOffset = 175
 	local checkBoxHorizontalSpacing = 80
 	
 	-- general settings --
@@ -52,7 +55,7 @@ function CICreateOptions(db, globalSettings)
 	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)
 	local scrollChild = CreateFrame("Frame")
 	scrollFrame:SetScrollChild(scrollChild)
-	scrollChild:SetWidth(InterfaceOptionsFramePanelContainer:GetWidth() - 18)
+	scrollChild:SetWidth(SettingsPanel.Container:GetWidth() - 18)
 	scrollChild:SetHeight(1)
 
 	for i, v in ipairs(db) do
@@ -68,7 +71,8 @@ function CICreateOptions(db, globalSettings)
 			if classCount > 0 then
 				checkBoxLabelText = checkBoxLabelText .. ' ('
 				for d, x in ipairs(v.class_white_list) do
-					checkBoxLabelText = checkBoxLabelText .. x
+					local classWithColour = GetClassIcon(x)
+					checkBoxLabelText = checkBoxLabelText .. classWithColour
 					if d < classCount then
 						checkBoxLabelText = checkBoxLabelText .. ', '
 					end
@@ -119,6 +123,72 @@ function CICreateOptions(db, globalSettings)
 	end
 end
 
+function GetClassIcon(className)
+	if className == 'WARRIOR' then
+		return "|T" .. "626008" .. ":0|t"
+		
+	elseif className == 'WARLOCK' then
+		return "|T" .. "626007" .. ":0|t"
+		
+	elseif className == 'SHAMAN' then
+		return "|T" .. "626006" .. ":0|t"
+		
+	elseif className == 'PALADIN' then
+		return "|T" .. "626003" .. ":0|t"
+		
+	elseif className == 'ROGUE' then
+		return "|T" .. "626005" .. ":0|t"
+		
+	elseif className == 'PRIEST' then
+		return "|T" .. "626004" .. ":0|t"
+		
+	elseif className == 'HUNTER' then
+		return "|T" .. "626000" .. ":0|t"
+		
+	elseif className == 'MAGE' then
+		return "|T" .. "626001" .. ":0|t"	
+		
+	elseif className == 'DRUID' then
+		return "|T" .. "625999" .. ":0|t"
+		
+	else
+		return className
+	end
+end
+
+function GetClassNameWithColour(className)
+	if className == 'WARRIOR' then
+		return '\124cffC69B6D' .. className .. '\124r'
+		
+	elseif className == 'WARLOCK' then
+		return '\124cff8788EE' .. className .. '\124r'
+		
+	elseif className == 'SHAMAN' then
+		return '\124cff0070DD' .. className .. '\124r'	
+		
+	elseif className == 'PALADIN' then
+		return '\124cffF48CBA' .. className .. '\124r'	
+		
+	elseif className == 'ROGUE' then
+		return '\124cffFFF468' .. className .. '\124r'	
+		
+	elseif className == 'PRIEST' then
+		return '\124cffFFFFFF' .. className .. '\124r'	
+		
+	elseif className == 'HUNTER' then
+		return '\124cffAAD372' .. className .. '\124r'	
+		
+	elseif className == 'MAGE' then
+		return '\124cff3FC7EB' .. className .. '\124r'	
+		
+	elseif className == 'DRUID' then
+		return '\124cffFF7C0A' .. className .. '\124r'	
+		
+	else
+		return className
+	end
+end
+
 function SlashCmdList_AddSlashCommand(name, func, ...)
     SlashCmdList[name] = func
     local command = ''
@@ -132,5 +202,5 @@ function SlashCmdList_AddSlashCommand(name, func, ...)
 end
 
 SlashCmdList_AddSlashCommand('CLASSICIMMUNITIES_SLASHCMD', function(msg)
-	InterfaceOptionsFrame_OpenToCategory("Classic Immunities")
+	Settings.OpenToCategory("Classic Immunities");
 end, 'ci', 'classicimmunities')
