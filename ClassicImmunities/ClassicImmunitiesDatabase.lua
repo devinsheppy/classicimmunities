@@ -167,7 +167,7 @@ _G["ClassicImmunitiesDB"] ={
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Undead", "Mechanical"},
 ["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019},
-["npc_id_black_list"]={6669}
+["npc_id_black_list"]={6669, 10996}
 },
 
 {["icon_id"]=710,
