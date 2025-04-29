@@ -1,4 +1,4 @@
-## Interface: 11504
+## Interface: 11507
 ## Title: Classic Immunities
 ## Notes: Displays known creature immunities in tooltips
 ## Version: 1.0.0

@@ -71,7 +71,7 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_white_list"]={
 4676, 6073, 7135, 7136, 89, 8608, 14668, 8616, 2745, 14461, 9376, 5850, 8910, 14460, 2760, 4038, 4037, 7738, 9178, 7266, 575,
 8909, 8911, 11668, 12099, 11666, 11667, 12265, 6521, 3417, 9026, 9816, 8281, 6520, 12143, 2447, 7044, 7045, 7046, 2757, 2759, 2726,
-12899, 7846, 9878, 9879, 2091, 9156, 9017, 9016, 9938, 5852},
+12899, 7846, 9878, 9879, 2091, 9156, 9017, 9016, 9938, 5852, 7664},
 ["npc_id_black_list"]={}
 },
 
@@ -82,7 +82,7 @@ _G["ClassicImmunitiesDB"] ={
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={
 9453, 6047, 15211, 12876, 3917, 8519, 8521, 10757, 10756, 2761, 10642, 14350, 6220, 691, 13256, 13696, 14457, 5461, 5462, 14269,
-12759, 14458, 10664, 10202, 1796, 7429, 7428, 10198, 7358, 6922},
+12759, 14458, 10664, 10202, 1796, 7429, 7428, 10198, 7358, 6922, 7664},
 ["npc_id_black_list"]={}
 },
 
@@ -92,8 +92,9 @@ _G["ClassicImmunitiesDB"] ={
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
 ["npc_id_white_list"]={
-11782, 11781, 14464, 11745, 11745, 6239, 11747, 11746, 832, 11744, 329, 15307, 2791, 4034, 7032, 2736, 9396, 8667, 12101, 12076,
-11665, 5465, 2735, 9397, 5855, 16043, 12806, 11321, 7031, 13021, 14435, 92, 4499, 2752, 2592, 9377, 14454},
+11782, 11781, 14464, 11745, 11745, 6239, 11747, 11746, 832, 11744, 329, 15307, 2791, 4034, 7032, 2736, 9396, 8667, 12101, 12076, 5718, 12496,
+11665, 5465, 2735, 9397, 5855, 16043, 12806, 11321, 7031, 13021, 14435, 92, 4499, 2752, 2592, 9377, 14454, 5314, 12498, 5312, 12497, 12900,
+5720, 5722, 5721, 5719},
 ["npc_id_black_list"]={}
 },
 
@@ -139,7 +140,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397, 7664, 8095, 8120},
 ["npc_id_black_list"]={}
 },
 
@@ -148,7 +149,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397, 7664, 8095, 8120},
 ["npc_id_black_list"]={}
 },
 
@@ -157,7 +158,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={2757, 2759, 10202, 7846, 9019},
+["npc_id_white_list"]={2757, 2759, 10202, 7846, 9019, 7664},
 ["npc_id_black_list"]={}
 },
 
@@ -166,16 +167,16 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"WARLOCK", "WARRIOR", "PRIEST"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Undead", "Mechanical"},
-["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019},
+["npc_id_white_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019, 7664},
 ["npc_id_black_list"]={6669, 10996}
 },
 
 {["icon_id"]=710,
 ["display_name"]="Banish",
 ["class_white_list"]={"WARLOCK"},
-["creature_type_white_list"]={"Elemental"},
+["creature_type_white_list"]={"Elemental", "Demon"},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={7664},
 ["npc_id_black_list"]={}
 },
 
@@ -184,7 +185,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"WARLOCK"},
 ["creature_type_white_list"]={"Demon"},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={7664},
 ["npc_id_black_list"]={}
 },
 
@@ -193,7 +194,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Mechanical", "Elemental"},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={7664},
 ["npc_id_black_list"]={}
 },
 
@@ -202,7 +203,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={"Mechanical", "Elemental"},
-["npc_id_white_list"]={2757, 2759},
+["npc_id_white_list"]={2757, 2759, 7664, 5720, 5722, 5721, 5719},
 ["npc_id_black_list"]={}
 },
 
@@ -211,7 +212,12 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={"Humanoid", "Undead"},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={},
+["npc_id_white_list"]={
+752, 3757, 3755, 3754, 4788, 216659, 4789, 216660, 3767, 3770, 3765, 3771, 9877, 7110, 7107, 7105, 7106, 7111, 7109, 7108, 6200, 6201, 6202, 6126, 6125, 6127, 
+3762, 3759, 3758, 3763, 10647, 11454, 11452, 11453, 11455, 11451, 11457, 11456, 12236, 2004, 2002, 2003, 2005, 3662, 3772, 221223, 6115, 11697, 11937, 4677, 4680,
+221282, 4619, 5760, 4679, 4682, 4684, 221261, 221262, 221406, 7666, 8717, 6011, 7665, 7461, 7463, 9862, 7728, 12457, 2022, 2027, 2029, 3638, 3640, 3928, 1030, 4393,
+1032, 4541, 6219, 4021, 1031, 6218, 1033, 4020, 4391, 9477, 12222, 7086, 4469, 8766, 5235, 6559, 2655, 2656, 4468, 6556, 12221, 6557, 5228, 224242, 7092, 1806, 7093,
+8606, 8607, 1808},
 ["npc_id_black_list"]={}
 },
 
@@ -220,7 +226,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={9019},
+["npc_id_white_list"]={9019, 7664},
 ["npc_id_black_list"]={}
 },
 
@@ -238,7 +244,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={9019},
+["npc_id_white_list"]={9019, 7664},
 ["npc_id_black_list"]={}
 },
 
@@ -247,7 +253,7 @@ _G["ClassicImmunitiesDB"] ={
 ["class_white_list"]={"ROGUE"},
 ["creature_type_white_list"]={},
 ["creature_type_black_list"]={},
-["npc_id_white_list"]={5854},
+["npc_id_white_list"]={5854, 7039, 6232},
 ["npc_id_black_list"]={}
 },
 
