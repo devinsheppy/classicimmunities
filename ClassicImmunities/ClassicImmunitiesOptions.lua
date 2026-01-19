@@ -36,15 +36,15 @@ function CICreateOptions(db, globalSettings)
 	scrollLabel:SetText("Source")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 5, -60)
 	scrollLabel:SetText("Class")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 2, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 2 - 5, -60)
 	scrollLabel:SetText("Force On")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 3, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 3 - 5, -60)
 	scrollLabel:SetText("Force Off")
 
 	-- Create the scrolling parent frame and size it to fit inside the texture
@@ -60,17 +60,27 @@ function CICreateOptions(db, globalSettings)
 
 	for i, v in ipairs(db) do
 		local globalSetting = CITableGetImmunityByDisplayName(globalSettings.FILTER_LIST, v.display_name)
-	
-		local scrollChildHeight = scrollChildCount * scrollChildVerticalSpacing
+
+        local rowHeight = scrollChildVerticalSpacing
+        local row = CreateFrame("Frame", nil, scrollChild)
+        row:SetPoint("TOPLEFT", 0, -scrollChildCount * rowHeight)
+        row:SetSize(scrollChild:GetWidth(), rowHeight)
+        
+        if scrollChildCount % 2 == 1 then
+            local bg = row:CreateTexture(nil, "BACKGROUND")
+            bg:SetAllPoints()
+            bg:SetColorTexture(1, 1, 1, 0.06) -- subtle light stripe
+        end
 
 		local checkBoxLabel = scrollChild:CreateFontString(nil, nil, "GameTooltipText")
-		checkBoxLabel:SetPoint("TOPLEFT", 0, -scrollChildHeight - 10)
-		local checkBoxLabelText = CIGetSpellTexture(v.icon_id) .. " " .. v.display_name
+        checkBoxLabel:SetParent(row)
+        checkBoxLabel:SetPoint("LEFT", 4, 0)
+		local checkBoxLabelText = CIGetIconTexture(v.icon_id, 20) .. " " .. v.display_name
 		if true then
-			local classCount = table.getn(v.class_white_list)
+			local classCount = table.getn(v.class_uses_immunity_list)
 			if classCount > 0 then
 				checkBoxLabelText = checkBoxLabelText .. ' ('
-				for d, x in ipairs(v.class_white_list) do
+				for d, x in ipairs(v.class_uses_immunity_list) do
 					local classWithColour = GetClassIcon(x)
 					checkBoxLabelText = checkBoxLabelText .. classWithColour
 					if d < classCount then
@@ -86,7 +96,8 @@ function CICreateOptions(db, globalSettings)
 		local checkBoxForceOn = CreateFrame("CheckButton", "CheckButtonForceOn%i", scrollChild, "UICheckButtonTemplate")
 		local checkBoxForceOff = CreateFrame("CheckButton", "CheckButtonForceOff%i", scrollChild, "UICheckButtonTemplate")
 		
-		checkBoxClass:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, -scrollChildHeight)		
+        checkBoxClass:SetParent(row)
+        checkBoxClass:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)		
 		checkBoxClass:SetChecked(globalSetting.FILTER_TYPE == "CLASS")		
 		checkBoxClass:SetScript("OnClick", function(frame)
 			local tick = frame:GetChecked()
@@ -97,7 +108,8 @@ function CICreateOptions(db, globalSettings)
 			end
 			end)
 		
-		checkBoxForceOn:SetPoint("TOPLEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 2), -scrollChildHeight)		
+        checkBoxForceOn:SetParent(row)
+        checkBoxForceOn:SetPoint("LEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 2), 0)
 		checkBoxForceOn:SetChecked(globalSetting.FILTER_TYPE == "FORCE_ON")		
 		checkBoxForceOn:SetScript("OnClick", function(frame)
 			local tick = frame:GetChecked()
@@ -108,7 +120,8 @@ function CICreateOptions(db, globalSettings)
 			end
 			end)
 		
-		checkBoxForceOff:SetPoint("TOPLEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 3), -scrollChildHeight)		
+        checkBoxForceOff:SetParent(row)
+        checkBoxForceOff:SetPoint("LEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 3), 0)
 		checkBoxForceOff:SetChecked(globalSetting.FILTER_TYPE == "FORCE_OFF")		
 		checkBoxForceOff:SetScript("OnClick", function(frame)
 			local tick = frame:GetChecked()			
@@ -121,35 +134,37 @@ function CICreateOptions(db, globalSettings)
 		
 		scrollChildCount = scrollChildCount + 1
 	end
+    
+    scrollChild:SetHeight(scrollChildCount * scrollChildVerticalSpacing)
 end
 
 function GetClassIcon(className)
 	if className == 'WARRIOR' then
-		return "|T" .. "626008" .. ":0|t"
+		return "|T" .. "626008" .. ":16|t"
 		
 	elseif className == 'WARLOCK' then
-		return "|T" .. "626007" .. ":0|t"
+		return "|T" .. "626007" .. ":16|t"
 		
 	elseif className == 'SHAMAN' then
-		return "|T" .. "626006" .. ":0|t"
+		return "|T" .. "626006" .. ":16|t"
 		
 	elseif className == 'PALADIN' then
-		return "|T" .. "626003" .. ":0|t"
+		return "|T" .. "626003" .. ":16|t"
 		
 	elseif className == 'ROGUE' then
-		return "|T" .. "626005" .. ":0|t"
+		return "|T" .. "626005" .. ":16|t"
 		
 	elseif className == 'PRIEST' then
-		return "|T" .. "626004" .. ":0|t"
+		return "|T" .. "626004" .. ":16|t"
 		
 	elseif className == 'HUNTER' then
-		return "|T" .. "626000" .. ":0|t"
+		return "|T" .. "626000" .. ":16|t"
 		
 	elseif className == 'MAGE' then
-		return "|T" .. "626001" .. ":0|t"	
+		return "|T" .. "626001" .. ":16|t"	
 		
 	elseif className == 'DRUID' then
-		return "|T" .. "625999" .. ":0|t"
+		return "|T" .. "625999" .. ":16|t"
 		
 	else
 		return className

@@ -15,6 +15,7 @@ _G["ClassicImmunitiesLocalization"] ={
 	["Humanoid"] = "Humanoid",
 	["Mechanical"] = "Mechanical",
 	["Undead"] = "Undead",
+    ["Not specified"] = "None",
 	
 	--deDE
 	["Wildtier"] = "Beast",

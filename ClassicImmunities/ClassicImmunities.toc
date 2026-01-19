@@ -1,6 +1,8 @@
-## Interface: 11507
+## Interface: 11508, 20505, 50503
 ## Title: Classic Immunities
 ## Notes: Displays known creature immunities in tooltips
+## IconTexture: Interface\AddOns\ClassicImmunities\ci_icon
+## Category: Combat
 ## Version: 1.0.0
 
 ## SavedVariables: CI_global_settings
