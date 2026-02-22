@@ -4,6 +4,7 @@
 ## IconTexture: Interface\AddOns\ClassicImmunities\ci_icon
 ## Category: Combat
 ## Version: 1.0.0
+## LoadOnDemand: 0
 
 ## SavedVariables: CI_global_settings
 

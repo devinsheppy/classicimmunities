@@ -70,7 +70,7 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_immune_list"]={
 11782, 11781, 14464, 11745, 11745, 6239, 11747, 11746, 832, 11744, 329, 15307, 2791, 4034, 7032, 2736, 9396, 8667, 12101, 12076, 5718, 12496,
 11665, 5465, 2735, 9397, 5855, 16043, 12806, 11321, 7031, 13021, 14435, 92, 4499, 2752, 2592, 9377, 14454, 5314, 12498, 5312, 12497, 12900,
-5720, 5722, 5721, 5719},
+5720, 5722, 5721, 5719, 4120},
 ["npc_id_forced_not_immune_list"]={}
 },
 
@@ -103,7 +103,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Taunt",
 ["class_uses_immunity_list"]={"WARRIOR", "DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
-["npc_id_forced_immune_list"]={},
+["npc_id_forced_immune_list"]={16595},
 ["npc_id_forced_not_immune_list"]={}
 },
 
@@ -127,7 +127,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Stun",
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
-["npc_id_forced_immune_list"]={2757, 2759, 10202, 7846, 9019, 7664},
+["npc_id_forced_immune_list"]={2757, 2759, 10202, 7846, 9019, 7664, 16408, 16414, 16471, 16473, 16472, 16470, 16482, 16526, 16544, 16545, 16595, 21148, 18848, 18796},
 ["npc_id_forced_not_immune_list"]={}
 },
 
@@ -194,7 +194,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Sap",
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
-["npc_id_forced_immune_list"]={9019},
+["npc_id_forced_immune_list"]={9019, 17455, 17281, 16700, 17465, 18323},
 ["npc_id_forced_not_immune_list"]={}
 },
 
@@ -210,7 +210,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Distract",
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
-["npc_id_forced_immune_list"]={5854, 7039, 6232},
+["npc_id_forced_immune_list"]={5854, 7039, 6232, 19166},
 ["npc_id_forced_not_immune_list"]={}
 },
 
@@ -226,7 +226,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Stealth",
 ["class_uses_immunity_list"]={"ROGUE", "DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
-["npc_id_forced_immune_list"]={11673, 11671, 8921, 8922, 16164, 16449, 16448},
+["npc_id_forced_immune_list"]={11673, 11671, 8921, 8922, 16164, 16449, 16448, 10411, 17264, 17280, 16507, 17669, 17462, 17461, 20923, 17671, 17727, 21694, 17958, 16504},
 ["npc_id_forced_not_immune_list"]={}
 },
 
