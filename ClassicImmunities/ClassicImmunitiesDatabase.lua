@@ -2,8 +2,8 @@
 -- 1512 -- duskbat for testing
 -- 19 -- for polymorph
 
--- ["icon_id"] -- used to display immunity icon in tooltip
 -- ["display_name"] -- used to display immunity text in tooltip
+-- ["icon_id"] -- used to display immunity icon in tooltip
 
 -- ["class_uses_immunity_list"] -- player class has spells or abilities that use this immunity
 -- ["race_uses_immunity_list"] -- player race has spells or abilities that use this immunity -- undead priest only thing that matters??
@@ -42,8 +42,9 @@ function CITableGetImmunityByDisplayName(t, display_name)
 end
 
 _G["ClassicImmunitiesDB"] ={
-{["icon_id"]=135812,
+{
 ["display_name"]="Fire",
+["icon_id"]=135812,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
@@ -53,8 +54,9 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135846,
+{
 ["display_name"]="Frost",
+["icon_id"]=135846,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
@@ -63,8 +65,9 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136048,
+{
 ["display_name"]="Nature",
+["icon_id"]=136048,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
@@ -74,8 +77,9 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136197,
+{
 ["display_name"]="Shadow",
+["icon_id"]=136197,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
@@ -83,96 +87,108 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136096,
+{
 ["display_name"]="Arcane",
+["icon_id"]=136096,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135920,
+{
 ["display_name"]="Holy",
+["icon_id"]=135920,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136080,
+{
 ["display_name"]="Taunt",
+["icon_id"]=136080,
 ["class_uses_immunity_list"]={"WARRIOR", "DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={16595},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135860,
+{
 ["display_name"]="Slow",
+["icon_id"]=135860,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397, 7664, 8095, 8120},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136100,
+{
 ["display_name"]="Root",
+["icon_id"]=136100,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2447, 7044, 7045, 7046, 2757, 2759, 7846, 9019, 7309, 7076, 7077, 7011, 7012, 7396, 7397, 7664, 8095, 8120},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135963,
+{
 ["display_name"]="Stun",
+["icon_id"]=135963,
 ["class_uses_immunity_list"]={},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2757, 2759, 10202, 7846, 9019, 7664, 16408, 16414, 16471, 16473, 16472, 16470, 16482, 16526, 16544, 16545, 16595, 21148, 18848, 18796},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136168,
+{
 ["display_name"]="Bleed",
+["icon_id"]=136168,
 ["class_uses_immunity_list"]={},
-["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = true, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
+["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={7664},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136016,
+{
 ["display_name"]="Poison",
+["icon_id"]=136016,
 ["class_uses_immunity_list"]={},
-["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = true, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
+["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2757, 2759, 7664, 5720, 5722, 5721, 5719},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136183,
+{
 ["display_name"]="Fear",
+["icon_id"]=136183,
 ["class_uses_immunity_list"]={"WARLOCK", "WARRIOR", "PRIEST"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={2447, 7044, 7045, 7046, 2757, 2759, 10664, 10202, 1940, 1939, 1942, 1944, 1943, 9019, 7664},
 ["npc_id_forced_not_immune_list"]={6669, 10996}
 },
 
-{["icon_id"]=136135,
+{
 ["display_name"]="Banish",
+["icon_id"]=136135,
 ["class_uses_immunity_list"]={"WARLOCK"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = false, ["Dragonkin"] = true, ["Elemental"] = false, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={7664},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136154,
+{
 ["display_name"]="Subjugate Demon",
+["icon_id"]=136154,
 ["class_uses_immunity_list"]={"WARLOCK"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = false, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={7664},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=133644,
+{
 ["display_name"]="Pickpocket",
+["icon_id"]=133644,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={747, 750, 751, 752, 950, 10996},
@@ -182,64 +198,72 @@ _G["ClassicImmunitiesDB"] ={
 7093, 4469, 4394, 4395, 4393, 5235, 1033, 4392, 224242, 4391, 5228, 1031, 3638, 3640, 3928, 1030, 4541, 6219, 4021, 6218, 4020, 12222, 5235, 2655, 4468, 12221, 1806, 7107, 9877, 7111, 9862, 9454},
 },
 
-{["icon_id"]=132155,
+{
 ["display_name"]="Gouge",
+["icon_id"]=132155,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={9019, 7664},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132310,
+{
 ["display_name"]="Sap",
+["icon_id"]=132310,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={9019, 17455, 17281, 16700, 17465, 18323},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136175,
+{
 ["display_name"]="Blind",
+["icon_id"]=136175,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={9019, 7664},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132289,
+{
 ["display_name"]="Distract",
+["icon_id"]=132289,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={5854, 7039, 6232, 19166},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132219,
+{
 ["display_name"]="Kick",
+["icon_id"]=132219,
 ["class_uses_immunity_list"]={"ROGUE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2447, 7358},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132320,
+{
 ["display_name"]="Stealth",
+["icon_id"]=132320,
 ["class_uses_immunity_list"]={"ROGUE", "DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={11673, 11671, 8921, 8922, 16164, 16449, 16448, 10411, 17264, 17280, 16507, 17669, 17462, 17461, 20923, 17671, 17727, 21694, 17958, 16504},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132938,
+{
 ["display_name"]="Pummel",
+["icon_id"]=132938,
 ["class_uses_immunity_list"]={"WARRIOR"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2447, 7358},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135856,
+{
 ["display_name"]="Counterspell",
+["icon_id"]=135856,
 ["class_uses_immunity_list"]={"MAGE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["creature_type_white_list"]={},
@@ -248,80 +272,90 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136164,
+{
 ["display_name"]="Silence",
+["icon_id"]=136164,
 ["class_uses_immunity_list"]={"PRIEST"},
 ["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2447, 7358},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136091,
+{
 ["display_name"]="Shackle Undead",
+["icon_id"]=136091,
 ["class_uses_immunity_list"]={"PRIEST"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136206,
+{
 ["display_name"]="Mind Control",
+["icon_id"]=136206,
 ["class_uses_immunity_list"]={"PRIEST"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135933,
+{
 ["display_name"]="Mind Soothe",
+["icon_id"]=135933,
 ["class_uses_immunity_list"]={"PRIEST"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135903,
+{
 ["display_name"]="Exorcism",
+["icon_id"]=135903,
 ["class_uses_immunity_list"]={"PALADIN"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = false, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=135983,
+{
 ["display_name"]="Turn Undead",
+["icon_id"]=135983,
 ["class_uses_immunity_list"]={"PALADIN"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136071,
+{
 ["display_name"]="Polymorph",
+["icon_id"]=136071,
 ["class_uses_immunity_list"]={"MAGE"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = false, ["Critter"] = false, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={9019, 8929},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132118,
+{
 ["display_name"]="Scare Beast",
+["icon_id"]=132118,
 ["class_uses_immunity_list"]={"HUNTER"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = false, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=136090,
+{
 ["display_name"]="Hibernate",
+["icon_id"]=136090,
 ["class_uses_immunity_list"]={"DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = false, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = false, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={},
 ["npc_id_forced_not_immune_list"]={}
 },
 
-{["icon_id"]=132163,
+{
 ["display_name"]="Soothe Animal",
+["icon_id"]=132163,
 ["class_uses_immunity_list"]={"DRUID"},
 ["creature_type_is_immune_by_default_list"]={["None"] = true, ["Beast"] = false, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = true},
 ["npc_id_forced_immune_list"]={},
