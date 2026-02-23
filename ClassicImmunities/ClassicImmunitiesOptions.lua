@@ -2,7 +2,8 @@ function CICreateOptions(db, globalSettings)
 	local CIOptionsFrame = CreateFrame("Frame")
 	CIOptionsFrame.name = "Classic Immunities"
 	
-	local ci_category = Settings.RegisterCanvasLayoutCategory(CIOptionsFrame, CIOptionsFrame.name);
+    local catName = "|TInterface\\AddOns\\ClassicImmunities\\ci_icon.tga:16:16|t " .. CIOptionsFrame.name
+	local ci_category = Settings.RegisterCanvasLayoutCategory(CIOptionsFrame, catName);
 	ci_category.ID = CIOptionsFrame.name
 	CIOptionsFrame.category = ci_category
 	Settings.RegisterAddOnCategory(ci_category);
@@ -15,41 +16,93 @@ function CICreateOptions(db, globalSettings)
 	generalSettingsLabel:SetPoint("TOPLEFT", 0, 0)
 	generalSettingsLabel:SetText("General Settings")
 	
-	local showAllClassLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameTooltipText")
-	showAllClassLabel:SetPoint("TOPLEFT", 0, -20)
-	showAllClassLabel:SetText("Show All Class Immunities")
-	
-	local checkBoxShowAllClass = CreateFrame("CheckButton", "CheckButtonShowAllClass", CIOptionsFrame, "UICheckButtonTemplate")
-	checkBoxShowAllClass:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 3, -10)		
-	checkBoxShowAllClass:SetChecked(globalSettings.SHOW_ALL_CLASS_IMMUNITIES)		
-	checkBoxShowAllClass:SetScript("OnClick", function(frame)
-		local tick = frame:GetChecked()
-		globalSettings.SHOW_ALL_CLASS_IMMUNITIES = tick
-		end)
+	-- immunity filters --
+	local settingsScrollChildCount = 0
+	local settingsScrollChildVerticalSpacing = 25
+
+	-- Create the scrolling parent frame and size it to fit inside the texture
+	local settingsScrollFrame = CreateFrame("ScrollFrame", nil, CIOptionsFrame, "UIPanelScrollFrameTemplate")
+	settingsScrollFrame:SetPoint("TOPLEFT", 3, -15)
+	settingsScrollFrame:SetPoint("BOTTOMRIGHT", -27, (SettingsPanel.Container:GetHeight() / 2))
+
+	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)
+	local settingsScrollChild = CreateFrame("Frame")
+	settingsScrollFrame:SetScrollChild(settingsScrollChild)
+	settingsScrollChild:SetWidth(SettingsPanel.Container:GetWidth() - 18)
+	settingsScrollChild:SetHeight(1)
+    
+    local settingsDB = {
+    {
+        ["setting_name"] = "SHOW_ALL_CLASS_IMMUNITIES",
+        ["display_name"] = "Show All Class Immunities",
+    },
+    {
+        ["setting_name"] = "SHOW_FRIENDLY_NPC_IMMUNITIES",
+        ["display_name"] = "Show Friendly NPC Immunities",
+    }
+    }
+
+	for i, v in ipairs(settingsDB) do
+		-- local globalSetting = CITableGetImmunityByDisplayName(globalSettings.FILTER_LIST, v.display_name)
+
+        local rowHeight = settingsScrollChildVerticalSpacing
+        local row = CreateFrame("Frame", nil, settingsScrollChild)
+        row:SetPoint("TOPLEFT", 0, -settingsScrollChildCount * rowHeight)
+        row:SetSize(settingsScrollChild:GetWidth(), rowHeight)
+        
+        if settingsScrollChildCount % 2 == 1 then
+            local bg = row:CreateTexture(nil, "BACKGROUND")
+            bg:SetAllPoints()
+            bg:SetColorTexture(1, 1, 1, 0.06) -- subtle light stripe
+        end
+
+		local checkBoxSettingLabel = settingsScrollChild:CreateFontString(nil, nil, "GameTooltipText")
+        checkBoxSettingLabel:SetParent(row)
+        checkBoxSettingLabel:SetPoint("LEFT", 4, 0)
+
+		local checkBoxLabelText = v.display_name --CIGetIconTexture(v.icon_id, 20) .. " " .. v.display_name
+		checkBoxSettingLabel:SetText(checkBoxLabelText)
+		
+		local checkBoxSetting = CreateFrame("CheckButton", "CheckButtonSetting%i", settingsScrollChild, "UICheckButtonTemplate")
+		
+        checkBoxSetting:SetParent(row)
+        checkBoxSetting:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)		
+		checkBoxSetting:SetChecked(globalSettings[v.setting_name])		
+		checkBoxSetting:SetScript("OnClick", function(frame)
+			local tick = frame:GetChecked()
+                globalSettings[v.setting_name] = tick
+			end)
+
+		settingsScrollChildCount = settingsScrollChildCount + 1
+	end
+    
+    settingsScrollChild:SetHeight(settingsScrollChildCount * settingsScrollChildVerticalSpacing)
+
+    local scrollWindowHeight = -SettingsPanel.Container:GetHeight() / 2
 	
 	-- immunity filters --
 	local scrollChildCount = 0
 	local scrollChildVerticalSpacing = 25
 	
 	local scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", 0, -60)
+	scrollLabel:SetPoint("TOPLEFT", 0, scrollWindowHeight)
 	scrollLabel:SetText("Source")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 5, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 5, scrollWindowHeight)
 	scrollLabel:SetText("Class")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 2 - 5, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 2 - 5, scrollWindowHeight)
 	scrollLabel:SetText("Force On")
 	
 	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
-	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 3 - 5, -60)
+	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 3 - 5, scrollWindowHeight)
 	scrollLabel:SetText("Force Off")
 
 	-- Create the scrolling parent frame and size it to fit inside the texture
 	local scrollFrame = CreateFrame("ScrollFrame", nil, CIOptionsFrame, "UIPanelScrollFrameTemplate")
-	scrollFrame:SetPoint("TOPLEFT", 3, -75)
+	scrollFrame:SetPoint("TOPLEFT", 3, -SettingsPanel.Container:GetHeight() / 2 - 15)
 	scrollFrame:SetPoint("BOTTOMRIGHT", -27, 4)
 
 	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)

@@ -12,6 +12,7 @@ CI_global_settings
 {
 	{
 		["SHOW_ALL_CLASS_IMMUNITIES"] = false, -- if true, ignores the class_uses_immunity_list, showing all immunities
+        ["SHOW_FRIENDLY_NPC_IMMUNITIES"] = false -- if true, shows immunities for friendly NPCs like city guards
 	
 		["FILTER_LIST"] =
 		{
@@ -35,6 +36,10 @@ local function CILoadGlobalSettings(db)
 	
 	if CI_global_settings.SHOW_ALL_CLASS_IMMUNITIES == nil then
 		CI_global_settings.SHOW_ALL_CLASS_IMMUNITIES = false
+	end
+    
+    if CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES == nil then
+		CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES = false
 	end
 
 	for i, v in ipairs(db) do
@@ -122,6 +127,13 @@ local function on_tooltip_set_unit()
     local npc_id = tonumber(guid[6])
     if not npc_id then
         return
+    end
+    
+    if not CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES then
+        local unitIsEnemy = UnitIsEnemy("player", tt_unit)
+        if not unitIsEnemy then
+            return
+        end
     end
 
     local c_creatureType = UnitCreatureType(tt_unit)
