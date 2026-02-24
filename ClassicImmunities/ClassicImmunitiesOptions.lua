@@ -39,6 +39,10 @@ function CICreateOptions(db, globalSettings)
     {
         ["setting_name"] = "SHOW_FRIENDLY_NPC_IMMUNITIES",
         ["display_name"] = "Show Friendly NPC Immunities",
+    },
+    {
+        ["setting_name"] = "SHOW_IMMUNITIES_TOOLTIP_HEADER",
+        ["display_name"] = "Show Tooltip Header",
     }
     }
 

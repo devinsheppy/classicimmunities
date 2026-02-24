@@ -13,6 +13,7 @@ CI_global_settings
 	{
 		["SHOW_ALL_CLASS_IMMUNITIES"] = false, -- if true, ignores the class_uses_immunity_list, showing all immunities
         ["SHOW_FRIENDLY_NPC_IMMUNITIES"] = false -- if true, shows immunities for friendly NPCs like city guards
+        ["SHOW_IMMUNITIES_TOOLTIP_HEADER"] = true -- if true, shows "Immunities" header in tooltip before icons
 	
 		["FILTER_LIST"] =
 		{
@@ -41,6 +42,10 @@ local function CILoadGlobalSettings(db)
     if CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES == nil then
 		CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES = false
 	end
+    
+    if CI_global_settings.SHOW_IMMUNITIES_TOOLTIP_HEADER == nil then
+		CI_global_settings.SHOW_IMMUNITIES_TOOLTIP_HEADER = true
+	end
 
 	for i, v in ipairs(db) do
 		if CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name) == nil then
@@ -49,13 +54,24 @@ local function CILoadGlobalSettings(db)
 	end
 end
 
+local function CIAddTooltipHeader(npcID)
+    local headline = 'Immunities'
+    
+    if IsAltKeyDown() then
+        headline = headline .. ' : NPC ID (|cFFFFFFFF' .. npcID ..'|r)'
+        GameTooltip:AddLine(headline)
+    else
+        if CI_global_settings.SHOW_IMMUNITIES_TOOLTIP_HEADER then
+            GameTooltip:AddLine(headline)
+        end    
+    end
+end
+
 local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
+
+    CIAddTooltipHeader(npcID)
+
   	if immunityIcons and immuneToAnything then
-		local headline = 'Immunities'
-		if IsAltKeyDown() then
-			headline = headline .. ' : NPC ID (' .. npcID ..')'
-		end
-		GameTooltip:AddLine(headline)
 		if not IsControlKeyDown() then
 			local immuneTextures = ''
 			for i, v in ipairs(immunityIcons) do
@@ -66,13 +82,7 @@ local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
 			for i, v in ipairs(immunityIcons) do
 				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
 			end
-		end	
-	else		
-		if IsAltKeyDown() then
-			local headline = 'Immunities'
-			headline = headline .. ' : NPC ID (' .. npcID ..')'
-			GameTooltip:AddLine(headline)
-		end		
+		end
 	end
 end
 
