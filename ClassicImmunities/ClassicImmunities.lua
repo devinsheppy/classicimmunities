@@ -14,6 +14,11 @@ CI_global_settings
 		["SHOW_ALL_CLASS_IMMUNITIES"] = false, -- if true, ignores the class_uses_immunity_list, showing all immunities
         ["SHOW_FRIENDLY_NPC_IMMUNITIES"] = false -- if true, shows immunities for friendly NPCs like city guards
         ["SHOW_IMMUNITIES_TOOLTIP_HEADER"] = true -- if true, shows "Immunities" header in tooltip before icons
+        ["TOOLTIP_ICON_SIZE"] = int 2-36, size of the icons in the tooltip
+        ["HOLD_CTRL_TOGGLE_IMMUNITY_NAMES"] = true
+        ["DISABLE_CTRL_KEY"] = false
+        ["HOLD_ALT_TOGGLE_NPC_ID"] = true
+        ["DISABLE_ALT_KEY"] = false
 	
 		["FILTER_LIST"] =
 		{
@@ -46,6 +51,26 @@ local function CILoadGlobalSettings(db)
     if CI_global_settings.SHOW_IMMUNITIES_TOOLTIP_HEADER == nil then
 		CI_global_settings.SHOW_IMMUNITIES_TOOLTIP_HEADER = true
 	end
+    
+    if CI_global_settings.TOOLTIP_ICON_SIZE == nil then
+		CI_global_settings.TOOLTIP_ICON_SIZE = 16
+	end
+    
+    if CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES == nil then
+		CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES = true
+	end
+    
+    if CI_global_settings.DISABLE_CTRL_KEY == nil then
+		CI_global_settings.DISABLE_CTRL_KEY = false
+	end
+    
+    if CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID == nil then
+		CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID = true
+	end
+    
+    if CI_global_settings.DISABLE_ALT_KEY == nil then
+		CI_global_settings.DISABLE_ALT_KEY = false
+	end
 
 	for i, v in ipairs(db) do
 		if CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name) == nil then
@@ -57,7 +82,11 @@ end
 local function CIAddTooltipHeader(npcID)
     local headline = 'Immunities'
     
-    if IsAltKeyDown() then
+    local addNPCID = CI_global_settings.DISABLE_ALT_KEY == false and 
+    ((IsAltKeyDown() and CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID) or 
+    (IsAltKeyDown() == false and CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID == false))
+    
+    if addNPCID then
         headline = headline .. ' : NPC ID (|cFFFFFFFF' .. npcID ..'|r)'
         GameTooltip:AddLine(headline)
     else
@@ -70,18 +99,22 @@ end
 local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
 
     CIAddTooltipHeader(npcID)
+    
+    local addImmunityNames = CI_global_settings.DISABLE_CTRL_KEY == false and 
+        ((IsControlKeyDown() and CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES) or 
+        (IsControlKeyDown() == false and CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES == false))
 
   	if immunityIcons and immuneToAnything then
-		if not IsControlKeyDown() then
+		if addImmunityNames then
+            for i, v in ipairs(immunityIcons) do
+				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
+			end
+		else
 			local immuneTextures = ''
 			for i, v in ipairs(immunityIcons) do
 				immuneTextures = immuneTextures .. v[1] .. ' '
 			end
 			GameTooltip:AddLine(immuneTextures)
-		else
-			for i, v in ipairs(immunityIcons) do
-				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
-			end
 		end
 	end
 end
@@ -106,7 +139,7 @@ local function CIGetCreateImmunityInfo(npc_id, npc_hasCreatureType, npc_localize
                     if isNPCIDForcedImmune or isNPCCreatureTypeDefaultImmune then
                     
                         isImmuneToAnything = true
-                        local spell_texture = CIGetIconTexture(v.icon_id, 16)
+                        local spell_texture = CIGetIconTexture(v.icon_id, CI_global_settings.TOOLTIP_ICON_SIZE)
                         table.insert(immunityIcons, { spell_texture, v.display_name })
                     end
                 end

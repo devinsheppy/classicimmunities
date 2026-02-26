@@ -23,7 +23,7 @@ function CICreateOptions(db, globalSettings)
 	-- Create the scrolling parent frame and size it to fit inside the texture
 	local settingsScrollFrame = CreateFrame("ScrollFrame", nil, CIOptionsFrame, "UIPanelScrollFrameTemplate")
 	settingsScrollFrame:SetPoint("TOPLEFT", 3, -15)
-	settingsScrollFrame:SetPoint("BOTTOMRIGHT", -27, (SettingsPanel.Container:GetHeight() / 2))
+	settingsScrollFrame:SetPoint("BOTTOMRIGHT", -27, (SettingsPanel.Container:GetHeight() / 2) + 50)
 
 	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)
 	local settingsScrollChild = CreateFrame("Frame")
@@ -35,20 +35,50 @@ function CICreateOptions(db, globalSettings)
     {
         ["setting_name"] = "SHOW_ALL_CLASS_IMMUNITIES",
         ["display_name"] = "Show All Class Immunities",
+        ["setting_type"] = "CHECKBOX",
     },
     {
         ["setting_name"] = "SHOW_FRIENDLY_NPC_IMMUNITIES",
         ["display_name"] = "Show Friendly NPC Immunities",
+        ["setting_type"] = "CHECKBOX",
     },
     {
         ["setting_name"] = "SHOW_IMMUNITIES_TOOLTIP_HEADER",
         ["display_name"] = "Show Tooltip Header",
+        ["setting_type"] = "CHECKBOX",
+    },
+    {
+        ["setting_name"] = "HOLD_CTRL_TOGGLE_IMMUNITY_NAMES",
+        ["display_name"] = "'CTRL' Shows/Hides Immunity Names",
+        ["setting_type"] = "CHECKBOX",
+    },
+    {
+        ["setting_name"] = "DISABLE_CTRL_KEY",
+        ["display_name"] = "Disable 'CTRL' Key",
+        ["setting_type"] = "CHECKBOX",
+    },
+    {
+        ["setting_name"] = "HOLD_ALT_TOGGLE_NPC_ID",
+        ["display_name"] = "'ALT' Shows/Hides NPC ID",
+        ["setting_type"] = "CHECKBOX",
+    },
+    {
+        ["setting_name"] = "DISABLE_ALT_KEY",
+        ["display_name"] = "Disable 'ALT' Key",
+        ["setting_type"] = "CHECKBOX",
+    },
+    {
+        ["setting_name"] = "TOOLTIP_ICON_SIZE",
+        ["display_name"] = "Tooltip Icon Size",
+        ["setting_type"] = "SLIDER",
+        ["slider_min"] = 2,
+        ["slider_max"] = 32,
     }
     }
 
 	for i, v in ipairs(settingsDB) do
-		-- local globalSetting = CITableGetImmunityByDisplayName(globalSettings.FILTER_LIST, v.display_name)
 
+        -- settings --
         local rowHeight = settingsScrollChildVerticalSpacing
         local row = CreateFrame("Frame", nil, settingsScrollChild)
         row:SetPoint("TOPLEFT", 0, -settingsScrollChildCount * rowHeight)
@@ -60,22 +90,47 @@ function CICreateOptions(db, globalSettings)
             bg:SetColorTexture(1, 1, 1, 0.06) -- subtle light stripe
         end
 
-		local checkBoxSettingLabel = settingsScrollChild:CreateFontString(nil, nil, "GameTooltipText")
-        checkBoxSettingLabel:SetParent(row)
-        checkBoxSettingLabel:SetPoint("LEFT", 4, 0)
+		local settingLabel = settingsScrollChild:CreateFontString(nil, nil, "GameTooltipText")
+        settingLabel:SetParent(row)
+        settingLabel:SetPoint("LEFT", 4, 0)
 
-		local checkBoxLabelText = v.display_name --CIGetIconTexture(v.icon_id, 20) .. " " .. v.display_name
-		checkBoxSettingLabel:SetText(checkBoxLabelText)
+		local settingLabelText = v.display_name --CIGetIconTexture(v.icon_id, 20) .. " " .. v.display_name
+		settingLabel:SetText(settingLabelText)
 		
-		local checkBoxSetting = CreateFrame("CheckButton", "CheckButtonSetting%i", settingsScrollChild, "UICheckButtonTemplate")
-		
-        checkBoxSetting:SetParent(row)
-        checkBoxSetting:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)		
-		checkBoxSetting:SetChecked(globalSettings[v.setting_name])		
-		checkBoxSetting:SetScript("OnClick", function(frame)
-			local tick = frame:GetChecked()
-                globalSettings[v.setting_name] = tick
-			end)
+        if v.setting_type == "CHECKBOX" then
+            local checkBox = CreateFrame("CheckButton", "CheckButtonSetting%i", settingsScrollChild, "UICheckButtonTemplate")
+            checkBox:SetParent(row)
+            checkBox:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)
+            checkBox:SetChecked(globalSettings[v.setting_name])
+            checkBox:SetScript("OnClick", function(frame)
+                local tick = frame:GetChecked()
+                    globalSettings[v.setting_name] = tick
+                end)
+        elseif v.setting_type == "SLIDER" then
+            local slider = CreateFrame("Slider", "SliderSetting%i", settingsScrollChild, "OptionsSliderTemplate")
+            -- slider:SetPoint("TOPLEFT", 20, -40)
+            slider:SetParent(row)
+            slider:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 50, 0)
+            slider:SetMinMaxValues(v.slider_min, v.slider_max)
+            slider.Low:SetText(v.slider_min)
+            slider.Low:SetPoint("TOPLEFT", -2, -4)
+            slider.High:SetText(v.slider_max)
+            slider.High:SetPoint("TOPRIGHT", 4, -4)
+            slider.Text:SetText(globalSettings[v.setting_name])
+            slider.Text:SetPoint("BOTTOM", slider, "LEFT", -35, -5)
+            slider.Text:SetTextColor(1, 0.82, 0)
+            slider:SetValueStep(1)
+            slider:SetObeyStepOnDrag(true)
+            slider:SetWidth(200)
+            slider:SetValue(globalSettings[v.setting_name])
+            slider:SetScript("OnValueChanged", function(self, value)
+                value = math.floor(value + 0.5)
+                globalSettings[v.setting_name] = value
+                self.Text:SetText(value)
+            end)
+        else 
+            print(v.display_name .. " invalid setting type")
+        end
 
 		settingsScrollChildCount = settingsScrollChildCount + 1
 	end
