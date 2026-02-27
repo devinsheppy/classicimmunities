@@ -34,38 +34,52 @@ function CICreateOptions(db, globalSettings)
     local settingsDB = {
     {
         ["setting_name"] = "SHOW_ALL_CLASS_IMMUNITIES",
-        ["display_name"] = "Show All Class Immunities",
+        ["display_name"] = "All Class Immunities",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "All Class Immunities |cFFFFCC00Shown|r",
+        ["display_name_OFF"] = "All Class Immunities |cFFFFCC00Hidden|r",
     },
     {
         ["setting_name"] = "SHOW_FRIENDLY_NPC_IMMUNITIES",
-        ["display_name"] = "Show Friendly NPC Immunities",
+        ["display_name"] = "Friendly NPC Immunities",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "Friendly NPC Immunities |cFFFFCC00Shown|r",
+        ["display_name_OFF"] = "Friendly NPC Immunities |cFFFFCC00Hidden|r",
     },
     {
         ["setting_name"] = "SHOW_IMMUNITIES_TOOLTIP_HEADER",
-        ["display_name"] = "Show Tooltip Header",
+        ["display_name"] = "Tooltip Header",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "Tooltip Header |cFFFFCC00Shown|r",
+        ["display_name_OFF"] = "Tooltip Header |cFFFFCC00Hidden|r",
     },
     {
         ["setting_name"] = "HOLD_CTRL_TOGGLE_IMMUNITY_NAMES",
         ["display_name"] = "'CTRL' Shows/Hides Immunity Names",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "'CTRL' |cFFFFCC00Shows|r Immunity Names",
+        ["display_name_OFF"] = "'CTRL' |cFFFFCC00Hides|r Immunity Names",
     },
     {
         ["setting_name"] = "DISABLE_CTRL_KEY",
-        ["display_name"] = "Disable 'CTRL' Key",
+        ["display_name"] = "'CTRL' Key",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "'CTRL' Key |cFFFFCC00Enabled|r",
+        ["display_name_OFF"] = "'CTRL' Key |cFFFFCC00Disabled|r",
     },
     {
         ["setting_name"] = "HOLD_ALT_TOGGLE_NPC_ID",
         ["display_name"] = "'ALT' Shows/Hides NPC ID",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "'ALT' |cFFFFCC00Shows|r NPC ID",
+        ["display_name_OFF"] = "'ALT' |cFFFFCC00Hides|r NPC ID",
     },
     {
         ["setting_name"] = "DISABLE_ALT_KEY",
-        ["display_name"] = "Disable 'ALT' Key",
+        ["display_name"] = "'ALT' Key",
         ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "'ALT' Key |cFFFFCC00Enabled|r",
+        ["display_name_OFF"] = "'ALT' Key |cFFFFCC00Disabled|r",
     },
     {
         ["setting_name"] = "TOOLTIP_ICON_SIZE",
@@ -95,6 +109,13 @@ function CICreateOptions(db, globalSettings)
         settingLabel:SetPoint("LEFT", 4, 0)
 
 		local settingLabelText = v.display_name --CIGetIconTexture(v.icon_id, 20) .. " " .. v.display_name
+        if globalSettings[v.setting_name] and v.display_name_ON ~= nil then
+            settingLabelText = v.display_name_ON
+        end
+        
+        if not globalSettings[v.setting_name] and v.display_name_OFF ~= nil then
+            settingLabelText = v.display_name_OFF
+        end
 		settingLabel:SetText(settingLabelText)
 		
         if v.setting_type == "CHECKBOX" then
@@ -105,6 +126,15 @@ function CICreateOptions(db, globalSettings)
             checkBox:SetScript("OnClick", function(frame)
                 local tick = frame:GetChecked()
                     globalSettings[v.setting_name] = tick
+                    local newLabelText = v.display_name
+                    if tick and v.display_name_ON ~= nil then
+                        newLabelText = v.display_name_ON
+                    end
+                    
+                    if not tick and v.display_name_OFF ~= nil then
+                        newLabelText = v.display_name_OFF
+                    end
+                    settingLabel:SetText(newLabelText)
                 end)
         elseif v.setting_type == "SLIDER" then
             local slider = CreateFrame("Slider", "SliderSetting%i", settingsScrollChild, "OptionsSliderTemplate")
