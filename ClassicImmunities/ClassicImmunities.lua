@@ -15,10 +15,10 @@ CI_global_settings
         ["SHOW_FRIENDLY_NPC_IMMUNITIES"] = false -- if true, shows immunities for friendly NPCs like city guards
         ["SHOW_IMMUNITIES_TOOLTIP_HEADER"] = true -- if true, shows "Immunities" header in tooltip before icons
         ["TOOLTIP_ICON_SIZE"] = int 2-36, size of the icons in the tooltip
-        ["HOLD_CTRL_TOGGLE_IMMUNITY_NAMES"] = true
-        ["DISABLE_CTRL_KEY"] = false
-        ["HOLD_ALT_TOGGLE_NPC_ID"] = true
-        ["DISABLE_ALT_KEY"] = false
+        ["IMMUNITY_NAMES_BY_DEFAULT"] = false
+        ["ENABLE_CTRL_KEY"] = true
+        ["NPC_IDS_BY_DEFAULT"] = false
+        ["ENABLE_ALT_KEY"] = true
 	
 		["FILTER_LIST"] =
 		{
@@ -56,20 +56,20 @@ local function CILoadGlobalSettings(db)
 		CI_global_settings.TOOLTIP_ICON_SIZE = 16
 	end
     
-    if CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES == nil then
-		CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES = true
+    if CI_global_settings.IMMUNITY_NAMES_BY_DEFAULT == nil then
+		CI_global_settings.IMMUNITY_NAMES_BY_DEFAULT = false
 	end
     
-    if CI_global_settings.DISABLE_CTRL_KEY == nil then
-		CI_global_settings.DISABLE_CTRL_KEY = false
+    if CI_global_settings.ENABLE_CTRL_KEY == nil then
+		CI_global_settings.ENABLE_CTRL_KEY = true
 	end
     
-    if CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID == nil then
-		CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID = true
+    if CI_global_settings.NPC_IDS_BY_DEFAULT == nil then
+		CI_global_settings.NPC_IDS_BY_DEFAULT = false
 	end
     
-    if CI_global_settings.DISABLE_ALT_KEY == nil then
-		CI_global_settings.DISABLE_ALT_KEY = false
+    if CI_global_settings.ENABLE_ALT_KEY == nil then
+		CI_global_settings.ENABLE_ALT_KEY = true
 	end
 
 	for i, v in ipairs(db) do
@@ -79,12 +79,25 @@ local function CILoadGlobalSettings(db)
 	end
 end
 
+local function ShouldAddLine(isKeyDown, isKeyEnabled, isShowByDefault)
+    if isShowByDefault then
+        if isKeyEnabled then
+            return not isKeyDown
+        else
+            return true
+        end
+    else
+        if isKeyEnabled then
+            return isKeyDown
+        else
+            return false
+        end
+    end
+end
+
 local function CIAddTooltipHeader(npcID)
-    local headline = 'Immunities'
-    
-    local addNPCID = CI_global_settings.DISABLE_ALT_KEY == false and 
-    ((IsAltKeyDown() and CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID) or 
-    (IsAltKeyDown() == false and CI_global_settings.HOLD_ALT_TOGGLE_NPC_ID == false))
+    local headline = 'Immunities'    
+     local addNPCID = ShouldAddLine(IsAltKeyDown(), CI_global_settings.ENABLE_ALT_KEY, CI_global_settings.NPC_IDS_BY_DEFAULT)
     
     if addNPCID then
         headline = headline .. ' : NPC ID (|cFFFFFFFF' .. npcID ..'|r)'
@@ -100,9 +113,7 @@ local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
 
     CIAddTooltipHeader(npcID)
     
-    local addImmunityNames = CI_global_settings.DISABLE_CTRL_KEY == false and 
-        ((IsControlKeyDown() and CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES) or 
-        (IsControlKeyDown() == false and CI_global_settings.HOLD_CTRL_TOGGLE_IMMUNITY_NAMES == false))
+    local addImmunityNames = ShouldAddLine(IsControlKeyDown(), CI_global_settings.ENABLE_CTRL_KEY, CI_global_settings.IMMUNITY_NAMES_BY_DEFAULT)
 
   	if immunityIcons and immuneToAnything then
 		if addImmunityNames then

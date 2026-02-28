@@ -36,50 +36,50 @@ function CICreateOptions(db, globalSettings)
         ["setting_name"] = "SHOW_ALL_CLASS_IMMUNITIES",
         ["display_name"] = "All Class Immunities",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "All Class Immunities |cFFFFCC00Shown|r",
-        ["display_name_OFF"] = "All Class Immunities |cFFFFCC00Hidden|r",
+        ["display_name_ON"] = "|cFFFFCC00Show|r All Class Immunities",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r All Class Immunities",
     },
     {
         ["setting_name"] = "SHOW_FRIENDLY_NPC_IMMUNITIES",
         ["display_name"] = "Friendly NPC Immunities",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "Friendly NPC Immunities |cFFFFCC00Shown|r",
-        ["display_name_OFF"] = "Friendly NPC Immunities |cFFFFCC00Hidden|r",
+        ["display_name_ON"] = "|cFFFFCC00Show|r Friendly NPC Immunities",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r Friendly NPC Immunities",
     },
     {
         ["setting_name"] = "SHOW_IMMUNITIES_TOOLTIP_HEADER",
         ["display_name"] = "Tooltip Header",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "Tooltip Header |cFFFFCC00Shown|r",
-        ["display_name_OFF"] = "Tooltip Header |cFFFFCC00Hidden|r",
+        ["display_name_ON"] = "|cFFFFCC00Show|r Tooltip Header",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r Tooltip Header",
     },
     {
-        ["setting_name"] = "HOLD_CTRL_TOGGLE_IMMUNITY_NAMES",
-        ["display_name"] = "'CTRL' Shows/Hides Immunity Names",
+        ["setting_name"] = "IMMUNITY_NAMES_BY_DEFAULT",
+        ["display_name"] = "Immunity Names",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "'CTRL' |cFFFFCC00Shows|r Immunity Names",
-        ["display_name_OFF"] = "'CTRL' |cFFFFCC00Hides|r Immunity Names",
+        ["display_name_ON"] = "|cFFFFCC00Show|r Immunity Names By Default",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r Immunity Names By Default",
     },
     {
-        ["setting_name"] = "DISABLE_CTRL_KEY",
+        ["setting_name"] = "ENABLE_CTRL_KEY",
         ["display_name"] = "'CTRL' Key",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "'CTRL' Key |cFFFFCC00Enabled|r",
-        ["display_name_OFF"] = "'CTRL' Key |cFFFFCC00Disabled|r",
+        ["display_name_ON"] = "|cFFFFCC00Enable|r 'CTRL' Toggle Immunity Names",
+        ["display_name_OFF"] = "|cFFFFCC00Disable|r 'CTRL' Toggle Immunity Names",
     },
     {
-        ["setting_name"] = "HOLD_ALT_TOGGLE_NPC_ID",
-        ["display_name"] = "'ALT' Shows/Hides NPC ID",
+        ["setting_name"] = "NPC_IDS_BY_DEFAULT",
+        ["display_name"] = "NPC ID",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "'ALT' |cFFFFCC00Shows|r NPC ID",
-        ["display_name_OFF"] = "'ALT' |cFFFFCC00Hides|r NPC ID",
+        ["display_name_ON"] = "|cFFFFCC00Show|r NPC ID By Default",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r NPC ID By Default",
     },
     {
-        ["setting_name"] = "DISABLE_ALT_KEY",
+        ["setting_name"] = "ENABLE_ALT_KEY",
         ["display_name"] = "'ALT' Key",
         ["setting_type"] = "CHECKBOX",
-        ["display_name_ON"] = "'ALT' Key |cFFFFCC00Enabled|r",
-        ["display_name_OFF"] = "'ALT' Key |cFFFFCC00Disabled|r",
+        ["display_name_ON"] = "|cFFFFCC00Enable|r 'ALT' Toggle NPC ID",
+        ["display_name_OFF"] = "|cFFFFCC00Disable|r 'ALT' Toggle NPC ID",
     },
     {
         ["setting_name"] = "TOOLTIP_ICON_SIZE",
@@ -138,7 +138,6 @@ function CICreateOptions(db, globalSettings)
                 end)
         elseif v.setting_type == "SLIDER" then
             local slider = CreateFrame("Slider", "SliderSetting%i", settingsScrollChild, "OptionsSliderTemplate")
-            -- slider:SetPoint("TOPLEFT", 20, -40)
             slider:SetParent(row)
             slider:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 50, 0)
             slider:SetMinMaxValues(v.slider_min, v.slider_max)
