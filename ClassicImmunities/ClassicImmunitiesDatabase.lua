@@ -1,7 +1,3 @@
--- 3100 -- elder mottled boar for testing
--- 1512 -- duskbat for testing
--- 19 -- for polymorph
-
 -- ["display_name"] -- used to display immunity text in tooltip
 -- ["icon_id"] -- used to display immunity icon in tooltip
 
