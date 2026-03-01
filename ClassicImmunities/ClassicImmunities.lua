@@ -97,7 +97,7 @@ end
 
 local function CIAddTooltipHeader(npcID)
     local headline = 'Immunities'    
-     local addNPCID = ShouldAddLine(IsAltKeyDown(), CI_global_settings.ENABLE_ALT_KEY, CI_global_settings.NPC_IDS_BY_DEFAULT)
+    local addNPCID = ShouldAddLine(IsAltKeyDown(), CI_global_settings.ENABLE_ALT_KEY, CI_global_settings.NPC_IDS_BY_DEFAULT)
     
     if addNPCID then
         headline = headline .. ' : NPC ID (|cFFFFFFFF' .. npcID ..'|r)'
@@ -110,12 +110,11 @@ local function CIAddTooltipHeader(npcID)
 end
 
 local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
-
-    CIAddTooltipHeader(npcID)
     
     local addImmunityNames = ShouldAddLine(IsControlKeyDown(), CI_global_settings.ENABLE_CTRL_KEY, CI_global_settings.IMMUNITY_NAMES_BY_DEFAULT)
 
   	if immunityIcons and immuneToAnything then
+        CIAddTooltipHeader(npcID)
 		if addImmunityNames then
             for i, v in ipairs(immunityIcons) do
 				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
