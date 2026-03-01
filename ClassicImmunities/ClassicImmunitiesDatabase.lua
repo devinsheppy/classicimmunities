@@ -172,7 +172,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Bleed",
 ["icon_id"]=136168,
 ["class_uses_immunity_list"]={},
-["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
+["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = true, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={7664},
 ["npc_id_forced_not_immune_list"]={13021, 13022}
 },
@@ -181,7 +181,7 @@ _G["ClassicImmunitiesDB"] ={
 ["display_name"]="Poison",
 ["icon_id"]=136016,
 ["class_uses_immunity_list"]={},
-["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
+["creature_type_is_immune_by_default_list"]={["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = true, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={2757, 2759, 7664, 5720, 5722, 5721, 5719, 3674, 16491},
 ["npc_id_forced_not_immune_list"]={}
 },

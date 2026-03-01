@@ -183,8 +183,8 @@ local function on_tooltip_set_unit()
     end
     
     if not CI_global_settings.SHOW_FRIENDLY_NPC_IMMUNITIES then
-        local unitIsEnemy = UnitIsEnemy("player", tt_unit)
-        if not unitIsEnemy then
+        local reaction = UnitReaction("player", tt_unit)
+        if reaction and reaction > 4 then
             return
         end
     end
