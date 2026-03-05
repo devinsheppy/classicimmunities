@@ -1,18 +1,37 @@
 function CICreateOptions(db, globalSettings)
-	local CIOptionsFrame = CreateFrame("Frame")
-	CIOptionsFrame.name = "Classic Immunities"
-	
-    local catName = "|TInterface\\AddOns\\ClassicImmunities\\ci_icon.tga:16:16|t " .. CIOptionsFrame.name
-	local ci_category = Settings.RegisterCanvasLayoutCategory(CIOptionsFrame, catName);
-	ci_category.ID = CIOptionsFrame.name
-	CIOptionsFrame.category = ci_category
-	Settings.RegisterAddOnCategory(ci_category);
+
+    -- create parent category
+	local CIOptionsParentFrame = CreateFrame("Frame")
+	CIOptionsParentFrame.name = "Classic Immunities Options"
+    local optionsParentName = "|TInterface\\AddOns\\ClassicImmunities\\ci_icon.tga:16:16|t " .. "Classic Immunities"
+	local optionsParentCategory = Settings.RegisterCanvasLayoutCategory(CIOptionsParentFrame, optionsParentName);
+	optionsParentCategory.ID = CIOptionsParentFrame.name
+	CIOptionsParentFrame.category = optionsParentCategory
+	Settings.RegisterAddOnCategory(optionsParentCategory);
+    
+    -- create general options sub category
+    local CIGeneralOptionsFrame = CreateFrame("Frame")
+    CIGeneralOptionsFrame.name = "General"
+    local generalCategoryName = CIGeneralOptionsFrame.name
+	local generalCategory = Settings.RegisterCanvasLayoutCategory(CIGeneralOptionsFrame, generalCategoryName);
+	generalCategory.ID = CIOptionsParentFrame.name .. " " .. generalCategoryName
+	CIGeneralOptionsFrame.category = generalCategory
+    Settings.RegisterCanvasLayoutSubcategory(optionsParentCategory, CIGeneralOptionsFrame, generalCategoryName)
+    
+    -- create immunity options sub category
+    local CIImmunityOptionsFrame = CreateFrame("Frame")
+    CIImmunityOptionsFrame.name = "Immunities"
+    local immunitiesCategoryName = CIImmunityOptionsFrame.name
+	local immunitiesCategory = Settings.RegisterCanvasLayoutCategory(CIImmunityOptionsFrame, immunitiesCategoryName);
+	immunitiesCategory.ID = CIOptionsParentFrame.name .. " " .. immunitiesCategoryName
+	CIImmunityOptionsFrame.category = immunitiesCategory
+    Settings.RegisterCanvasLayoutSubcategory(optionsParentCategory, CIImmunityOptionsFrame, immunitiesCategoryName)
 	
 	local checkBoxHorizontalOffset = 175
 	local checkBoxHorizontalSpacing = 80
 	
 	-- general settings --
-	local generalSettingsLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
+	local generalSettingsLabel = CIGeneralOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
 	generalSettingsLabel:SetPoint("TOPLEFT", 0, 0)
 	generalSettingsLabel:SetText("General Settings")
 	
@@ -21,9 +40,9 @@ function CICreateOptions(db, globalSettings)
 	local settingsScrollChildVerticalSpacing = 25
 
 	-- Create the scrolling parent frame and size it to fit inside the texture
-	local settingsScrollFrame = CreateFrame("ScrollFrame", nil, CIOptionsFrame, "UIPanelScrollFrameTemplate")
+	local settingsScrollFrame = CreateFrame("ScrollFrame", nil, CIGeneralOptionsFrame, "UIPanelScrollFrameTemplate")
 	settingsScrollFrame:SetPoint("TOPLEFT", 3, -15)
-	settingsScrollFrame:SetPoint("BOTTOMRIGHT", -27, (SettingsPanel.Container:GetHeight() / 2) + 50)
+	settingsScrollFrame:SetPoint("BOTTOMRIGHT", -27, 15)
 
 	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)
 	local settingsScrollChild = CreateFrame("Frame")
@@ -166,32 +185,34 @@ function CICreateOptions(db, globalSettings)
     
     settingsScrollChild:SetHeight(settingsScrollChildCount * settingsScrollChildVerticalSpacing)
 
-    local scrollWindowHeight = -SettingsPanel.Container:GetHeight() / 2
+    local scrollWindowHeight = 0
 	
 	-- immunity filters --
 	local scrollChildCount = 0
 	local scrollChildVerticalSpacing = 25
+    
+    local immunitiesParentFrame = CIImmunityOptionsFrame
 	
-	local scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
+	local scrollLabel = immunitiesParentFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
 	scrollLabel:SetPoint("TOPLEFT", 0, scrollWindowHeight)
 	scrollLabel:SetText("Source")
 	
-	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
+	scrollLabel = immunitiesParentFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
 	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 5, scrollWindowHeight)
 	scrollLabel:SetText("Class")
 	
-	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
+	scrollLabel = immunitiesParentFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
 	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 2 - 5, scrollWindowHeight)
 	scrollLabel:SetText("Force On")
 	
-	scrollLabel = CIOptionsFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
+	scrollLabel = immunitiesParentFrame:CreateFontString("ARTWORK", nil, "GameFontNormal")
 	scrollLabel:SetPoint("TOPLEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing * 3 - 5, scrollWindowHeight)
 	scrollLabel:SetText("Force Off")
 
 	-- Create the scrolling parent frame and size it to fit inside the texture
-	local scrollFrame = CreateFrame("ScrollFrame", nil, CIOptionsFrame, "UIPanelScrollFrameTemplate")
-	scrollFrame:SetPoint("TOPLEFT", 3, -SettingsPanel.Container:GetHeight() / 2 - 15)
-	scrollFrame:SetPoint("BOTTOMRIGHT", -27, 4)
+	local scrollFrame = CreateFrame("ScrollFrame", nil, immunitiesParentFrame, "UIPanelScrollFrameTemplate")
+	scrollFrame:SetPoint("TOPLEFT", 3, -15)
+	scrollFrame:SetPoint("BOTTOMRIGHT", -27, 15)
 
 	-- Create the scrolling child frame, set its width to fit, and give it an arbitrary minimum height (such as 1)
 	local scrollChild = CreateFrame("Frame")
@@ -358,5 +379,5 @@ function SlashCmdList_AddSlashCommand(name, func, ...)
 end
 
 SlashCmdList_AddSlashCommand('CLASSICIMMUNITIES_SLASHCMD', function(msg)
-	Settings.OpenToCategory("Classic Immunities");
+	Settings.OpenToCategory("Classic Immunities Options");
 end, 'ci', 'classicimmunities')
