@@ -146,7 +146,7 @@ _G["ClassicImmunitiesDB"] ={
 ["creature_type_is_immune_by_default_list"]={
 ["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
-16595},
+16595, 17225},
 ["npc_id_forced_not_immune_list"]={}
 },
 
