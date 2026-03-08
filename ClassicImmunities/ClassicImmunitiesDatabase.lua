@@ -372,6 +372,18 @@ _G["ClassicImmunitiesDB"] ={
 ["npc_id_forced_not_immune_list"]={}
 },
 
+-- Polymorph
+{
+["display_name"]="Polymorph",
+["icon_id"]=136071,
+["class_uses_immunity_list"]={"MAGE"},
+["creature_type_is_immune_by_default_list"]={
+["None"] = true, ["Beast"] = false, ["Critter"] = false, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
+["npc_id_forced_immune_list"]={
+9019, 8929, 17671},
+["npc_id_forced_not_immune_list"]={}
+},
+
 -- Silence
 {
 ["display_name"]="Silence",
@@ -438,18 +450,6 @@ _G["ClassicImmunitiesDB"] ={
 ["None"] = true, ["Beast"] = true, ["Critter"] = true, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = true, ["Mechanical"] = true, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
 18503},
-["npc_id_forced_not_immune_list"]={}
-},
-
--- Polymorph
-{
-["display_name"]="Polymorph",
-["icon_id"]=136071,
-["class_uses_immunity_list"]={"MAGE"},
-["creature_type_is_immune_by_default_list"]={
-["None"] = true, ["Beast"] = false, ["Critter"] = false, ["Demon"] = true, ["Dragonkin"] = true, ["Elemental"] = true, ["Giant"] = true, ["Humanoid"] = false, ["Mechanical"] = true, ["Undead"] = true},
-["npc_id_forced_immune_list"]={
-9019, 8929},
 ["npc_id_forced_not_immune_list"]={}
 },
 
