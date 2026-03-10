@@ -101,6 +101,20 @@ function CICreateOptions(db, globalSettings)
         ["display_name_OFF"] = "|cFFFFCC00Disable|r 'ALT' Toggle NPC ID",
     },
     {
+        ["setting_name"] = "SHOW_IMMUNITIES_BY_DEFAULT",
+        ["display_name"] = "Show Immunities",
+        ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "|cFFFFCC00Show|r Immunities By Default",
+        ["display_name_OFF"] = "|cFFFFCC00Hide|r Immunities By Default",
+    },
+    {
+        ["setting_name"] = "ENABLE_SHIFT_KEY",
+        ["display_name"] = "'SHIFT' Key",
+        ["setting_type"] = "CHECKBOX",
+        ["display_name_ON"] = "|cFFFFCC00Enable|r 'SHIFT' Toggle Immunities",
+        ["display_name_OFF"] = "|cFFFFCC00Disable|r 'SHIFT' Toggle Immunities",
+    },
+    {
         ["setting_name"] = "TOOLTIP_ICON_SIZE",
         ["display_name"] = "Tooltip Icon Size",
         ["setting_type"] = "SLIDER",
