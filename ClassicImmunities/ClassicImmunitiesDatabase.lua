@@ -344,7 +344,7 @@ _G["ClassicImmunitiesDB"] ={
 ["creature_type_is_immune_by_default_list"]={
 ["None"] = false, ["Beast"] = false, ["Critter"] = false, ["Demon"] = false, ["Dragonkin"] = false, ["Elemental"] = false, ["Giant"] = false, ["Humanoid"] = false, ["Mechanical"] = false, ["Undead"] = false},
 ["npc_id_forced_immune_list"]={
-11673, 11671, 8921, 8922, 16164, 16449, 16448, 10411, 17264, 17280, 16507, 17669, 17462, 17461, 20923, 17671, 17727, 21694, 17958, 16504, 10381, 10382, 10405, 10406, 13036, 16485, 8538, 8539},
+11673, 11671, 8921, 8922, 16164, 16449, 16448, 10411, 17264, 17280, 16507, 17669, 17462, 17461, 20923, 17671, 17727, 21694, 17958, 16504, 10381, 10382, 10405, 10406, 13036, 16485, 8538, 8539, 20058},
 ["npc_id_forced_not_immune_list"]={}
 },
 
