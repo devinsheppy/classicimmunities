@@ -276,37 +276,31 @@ function CICreateOptions(db, globalSettings)
         checkBoxClass:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)		
 		checkBoxClass:SetChecked(globalSetting.FILTER_TYPE == "CLASS")		
 		checkBoxClass:SetScript("OnClick", function(frame)
-			local tick = frame:GetChecked()
-			if tick then
-				globalSetting.FILTER_TYPE = "CLASS"
-				checkBoxForceOn:SetChecked(false)
-				checkBoxForceOff:SetChecked(false)
-			end
-			end)
+			frame:SetChecked(true)
+			checkBoxForceOn:SetChecked(false)
+			checkBoxForceOff:SetChecked(false)
+			globalSetting.FILTER_TYPE = "CLASS"
+		end)
 		
         checkBoxForceOn:SetParent(row)
         checkBoxForceOn:SetPoint("LEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 2), 0)
 		checkBoxForceOn:SetChecked(globalSetting.FILTER_TYPE == "FORCE_ON")		
 		checkBoxForceOn:SetScript("OnClick", function(frame)
-			local tick = frame:GetChecked()
-			if tick then
-				globalSetting.FILTER_TYPE = "FORCE_ON"
-				checkBoxClass:SetChecked(false)
-				checkBoxForceOff:SetChecked(false)
-			end
-			end)
+			frame:SetChecked(true)
+			checkBoxClass:SetChecked(false)
+			checkBoxForceOff:SetChecked(false)
+			globalSetting.FILTER_TYPE = "FORCE_ON"
+		end)
 		
         checkBoxForceOff:SetParent(row)
         checkBoxForceOff:SetPoint("LEFT", checkBoxHorizontalOffset + (checkBoxHorizontalSpacing * 3), 0)
 		checkBoxForceOff:SetChecked(globalSetting.FILTER_TYPE == "FORCE_OFF")		
 		checkBoxForceOff:SetScript("OnClick", function(frame)
-			local tick = frame:GetChecked()			
-			if tick then
-				globalSetting.FILTER_TYPE = "FORCE_OFF"
-				checkBoxClass:SetChecked(false)
-				checkBoxForceOn:SetChecked(false)
-			end
-			end)
+			frame:SetChecked(true)
+			checkBoxClass:SetChecked(false)
+			checkBoxForceOn:SetChecked(false)
+			globalSetting.FILTER_TYPE = "FORCE_OFF"
+		end)
 		
 		scrollChildCount = scrollChildCount + 1
 	end
