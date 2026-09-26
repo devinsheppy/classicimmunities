@@ -152,7 +152,7 @@ function CICreateOptions(db, globalSettings)
 		settingLabel:SetText(settingLabelText)
 		
         if v.setting_type == "CHECKBOX" then
-            local checkBox = CreateFrame("CheckButton", "CheckButtonSetting%i", settingsScrollChild, "UICheckButtonTemplate")
+            local checkBox = CreateFrame("CheckButton", nil, settingsScrollChild, "UICheckButtonTemplate")
             checkBox:SetParent(row)
             checkBox:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)
             checkBox:SetChecked(globalSettings[v.setting_name])
@@ -170,7 +170,7 @@ function CICreateOptions(db, globalSettings)
                     settingLabel:SetText(newLabelText)
                 end)
         elseif v.setting_type == "SLIDER" then
-            local slider = CreateFrame("Slider", "SliderSetting%i", settingsScrollChild, "OptionsSliderTemplate")
+            local slider = CreateFrame("Slider", nil, settingsScrollChild, "OptionsSliderTemplate")
             slider:SetParent(row)
             slider:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing + 50, 0)
             slider:SetMinMaxValues(v.slider_min, v.slider_max)
@@ -268,9 +268,9 @@ function CICreateOptions(db, globalSettings)
 		end
 		checkBoxLabel:SetText(checkBoxLabelText)
 		
-		local checkBoxClass = CreateFrame("CheckButton", "CheckButtonClass%i", scrollChild, "UICheckButtonTemplate")
-		local checkBoxForceOn = CreateFrame("CheckButton", "CheckButtonForceOn%i", scrollChild, "UICheckButtonTemplate")
-		local checkBoxForceOff = CreateFrame("CheckButton", "CheckButtonForceOff%i", scrollChild, "UICheckButtonTemplate")
+		local checkBoxClass = CreateFrame("CheckButton", nil, scrollChild, "UICheckButtonTemplate")
+		local checkBoxForceOn = CreateFrame("CheckButton", nil, scrollChild, "UICheckButtonTemplate")
+		local checkBoxForceOff = CreateFrame("CheckButton", nil, scrollChild, "UICheckButtonTemplate")
 		
         checkBoxClass:SetParent(row)
         checkBoxClass:SetPoint("LEFT", checkBoxHorizontalOffset + checkBoxHorizontalSpacing, 0)		
