@@ -141,7 +141,7 @@ local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
 	end
 end
 
-local function CIGetCreateImmunityInfo(npc_id, npc_hasCreatureType, npc_localizedCreatureType)
+local function CIGetCreateImmunityInfo(npc_id, _npc_hasCreatureType, npc_localizedCreatureType)
   local isImmuneToAnything = false
   local immunityIcons = { }
 
@@ -214,7 +214,7 @@ local function on_event(_frame, e)
     if not CI_hook_installed then
       GameTooltip:HookScript("OnTooltipSetUnit", on_tooltip_set_unit)
       CI_hook_installed = true
-	  local localizedClass, englishClass, classIndex = UnitClass("player");
+	  local _localizedClass, englishClass, _classIndex = UnitClass("player");
 	  CI_PLAYER_CLASS = englishClass
 	  CILoadGlobalSettings(CI_DB)
 	  CICreateOptions(CI_DB, CI_global_settings)

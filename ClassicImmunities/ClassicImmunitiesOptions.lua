@@ -389,6 +389,6 @@ function SlashCmdList_AddSlashCommand(name, func, ...)
     end
 end
 
-SlashCmdList_AddSlashCommand('CLASSICIMMUNITIES_SLASHCMD', function(msg)
+SlashCmdList_AddSlashCommand('CLASSICIMMUNITIES_SLASHCMD', function(_msg)
 	Settings.OpenToCategory(_openToCatID);
 end, 'ci', 'classicimmunities')
