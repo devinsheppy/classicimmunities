@@ -1,3 +1,5 @@
+local _openToCatID
+
 function CICreateOptions(db, globalSettings)
 
     -- create parent category
@@ -5,16 +7,17 @@ function CICreateOptions(db, globalSettings)
 	CIOptionsParentFrame.name = "Classic Immunities Options"
     local optionsParentName = "|TInterface\\AddOns\\ClassicImmunities\\ci_icon.tga:16:16|t " .. "Classic Immunities"
 	local optionsParentCategory = Settings.RegisterCanvasLayoutCategory(CIOptionsParentFrame, optionsParentName);
-	optionsParentCategory.ID = CIOptionsParentFrame.name
+	--optionsParentCategory.ID = CIOptionsParentFrame.name
 	CIOptionsParentFrame.category = optionsParentCategory
 	Settings.RegisterAddOnCategory(optionsParentCategory);
+    _openToCatID = optionsParentCategory:GetID()
     
     -- create general options sub category
     local CIGeneralOptionsFrame = CreateFrame("Frame")
     CIGeneralOptionsFrame.name = "General"
     local generalCategoryName = CIGeneralOptionsFrame.name
 	local generalCategory = Settings.RegisterCanvasLayoutCategory(CIGeneralOptionsFrame, generalCategoryName);
-	generalCategory.ID = CIOptionsParentFrame.name .. " " .. generalCategoryName
+	--generalCategory.ID = CIOptionsParentFrame.name .. " " .. generalCategoryName
 	CIGeneralOptionsFrame.category = generalCategory
     Settings.RegisterCanvasLayoutSubcategory(optionsParentCategory, CIGeneralOptionsFrame, generalCategoryName)
     
@@ -23,7 +26,7 @@ function CICreateOptions(db, globalSettings)
     CIImmunityOptionsFrame.name = "Immunities"
     local immunitiesCategoryName = CIImmunityOptionsFrame.name
 	local immunitiesCategory = Settings.RegisterCanvasLayoutCategory(CIImmunityOptionsFrame, immunitiesCategoryName);
-	immunitiesCategory.ID = CIOptionsParentFrame.name .. " " .. immunitiesCategoryName
+	--immunitiesCategory.ID = CIOptionsParentFrame.name .. " " .. immunitiesCategoryName
 	CIImmunityOptionsFrame.category = immunitiesCategory
     Settings.RegisterCanvasLayoutSubcategory(optionsParentCategory, CIImmunityOptionsFrame, immunitiesCategoryName)
 	
@@ -387,5 +390,5 @@ function SlashCmdList_AddSlashCommand(name, func, ...)
 end
 
 SlashCmdList_AddSlashCommand('CLASSICIMMUNITIES_SLASHCMD', function(msg)
-	Settings.OpenToCategory("Classic Immunities Options");
+	Settings.OpenToCategory(_openToCatID);
 end, 'ci', 'classicimmunities')
