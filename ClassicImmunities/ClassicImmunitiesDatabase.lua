@@ -24,14 +24,14 @@ function CIGetIconTexture(icon_id, icon_size)
 end
 
 function CITableFind(t, v)
-	for i, v1 in ipairs(t) do
+	for i, _ in ipairs(t) do
 		if t[i] == v then return true end
 	end
 	return nil
 end
 
 function CITableGetImmunityByDisplayName(t, display_name)
-	for i, x in ipairs(t) do
+	for i, _ in ipairs(t) do
 		if t[i].display_name == display_name then return t[i] end
 	end
 	return nil

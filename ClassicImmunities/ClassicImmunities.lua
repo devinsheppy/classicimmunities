@@ -82,7 +82,7 @@ local function CILoadGlobalSettings(db)
 		CI_global_settings.ENABLE_SHIFT_KEY = false
 	end
 
-	for i, v in ipairs(db) do
+	for _, v in ipairs(db) do
 		if CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name) == nil then
 			table.insert(CI_global_settings.FILTER_LIST, { ["display_name"]=v.display_name, ["FILTER_TYPE"]="CLASS" })
 		end
@@ -128,12 +128,12 @@ local function CISetTooltipImmunities(immuneToAnything, immunityIcons, npcID)
   	if shouldShowImmunities and immunityIcons and immuneToAnything then
         local addImmunityNames = ShouldAddLine(IsControlKeyDown(), CI_global_settings.ENABLE_CTRL_KEY, CI_global_settings.IMMUNITY_NAMES_BY_DEFAULT)
 		if addImmunityNames then
-            for i, v in ipairs(immunityIcons) do
+            for _, v in ipairs(immunityIcons) do
 				GameTooltip:AddLine(v[1] .. ' ' .. v[2])
 			end
 		else
 			local immuneTextures = ''
-			for i, v in ipairs(immunityIcons) do
+			for _, v in ipairs(immunityIcons) do
 				immuneTextures = immuneTextures .. v[1] .. ' '
 			end
 			GameTooltip:AddLine(immuneTextures)
@@ -145,7 +145,7 @@ local function CIGetCreateImmunityInfo(npc_id, npc_hasCreatureType, npc_localize
   local isImmuneToAnything = false
   local immunityIcons = { }
 
-	for i, v in ipairs(CI_DB) do
+	for _, v in ipairs(CI_DB) do
 
 		local globalSetting = CITableGetImmunityByDisplayName(CI_global_settings.FILTER_LIST, v.display_name)
 		if globalSetting.FILTER_TYPE == "CLASS" or globalSetting.FILTER_TYPE == "FORCE_ON" then

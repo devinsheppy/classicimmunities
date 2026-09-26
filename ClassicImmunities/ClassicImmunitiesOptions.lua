@@ -126,7 +126,7 @@ function CICreateOptions(db, globalSettings)
     }
     }
 
-	for i, v in ipairs(settingsDB) do
+	for _, v in ipairs(settingsDB) do
 
         -- settings --
         local rowHeight = settingsScrollChildVerticalSpacing
@@ -237,7 +237,7 @@ function CICreateOptions(db, globalSettings)
 	scrollChild:SetWidth(SettingsPanel.Container:GetWidth() - 18)
 	scrollChild:SetHeight(1)
 
-	for i, v in ipairs(db) do
+	for _, v in ipairs(db) do
 		local globalSetting = CITableGetImmunityByDisplayName(globalSettings.FILTER_LIST, v.display_name)
 
         local rowHeight = scrollChildVerticalSpacing
