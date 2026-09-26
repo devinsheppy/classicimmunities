@@ -209,7 +209,7 @@ local function on_tooltip_set_unit()
     CISetTooltipImmunities(isImmuneToAnything, immunityIcons, npc_id) 
 end
 
-local function on_event(_frame, e, ...)
+local function on_event(_frame, e)
   if e == "PLAYER_ENTERING_WORLD" then
     if not CI_hook_installed then
       GameTooltip:HookScript("OnTooltipSetUnit", on_tooltip_set_unit)
