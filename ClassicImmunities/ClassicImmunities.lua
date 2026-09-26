@@ -220,8 +220,11 @@ local function on_event(_frame, e, ...)
 	  CICreateOptions(CI_DB, CI_global_settings)
     end
   elseif e == "MODIFIER_STATE_CHANGED" then
-    if UnitExists("mouseover") then
-      GameTooltip:SetUnit("mouseover");
+    if GameTooltip:IsShown() then
+      local _tt_name, tooltipUnit = GameTooltip:GetUnit()
+      if tooltipUnit and UnitExists("mouseover") and UnitIsUnit(tooltipUnit, "mouseover") then
+        GameTooltip:SetUnit(tooltipUnit)
+      end
     end
   end
 end
